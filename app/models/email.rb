@@ -1,2 +1,2 @@
-class EMail < Contact
+class Email < Contact
 end

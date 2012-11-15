@@ -1,4 +1,6 @@
 Quattro::Application.routes.draw do
+  get "dashboard/index"
+
   resources :customers
 
   resources :action_registrations

@@ -1,0 +1,21 @@
+<h1>Listing projects</h1>
+
+<table>
+  <tr>
+    <th>Description</th>
+    <th>Budget</th>
+    <th>Startdate</th>
+    <th>Finishdate</th>
+    <th>Vehicle</th>
+  </tr>
+
+<% @projects.each do |project| %>
+  <tr>
+    <td><%= project.description %></td>
+    <td><%= project.budget %></td>
+    <td><%= project.startDate %></td>
+    <td><%= project.finishDate %></td>
+    <td><%= project.vehicle_id %></td>
+  </tr>
+<% end %>
+</table>
