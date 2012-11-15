@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  brand_id: 1
+  model_id: 1
+  body_id: 1
+  year: 1
+
+two:
+  brand_id: 1
+  model_id: 1
+  body_id: 1
+  year: 1

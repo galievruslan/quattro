@@ -5,6 +5,26 @@
   <%= @project.description %>
 </p>
 
+<p>
+  <b>Budget:</b>
+  <%= @project.budget %>
+</p>
+
+<p>
+  <b>Startdate:</b>
+  <%= @project.startDate %>
+</p>
+
+<p>
+  <b>Finishdate:</b>
+  <%= @project.finishDate %>
+</p>
+
+<p>
+  <b>Vehicle:</b>
+  <%= @project.vehicle_id %>
+</p>
+
 
 <%= link_to 'Edit', edit_project_path(@project) %> |
 <%= link_to 'Back', projects_path %>

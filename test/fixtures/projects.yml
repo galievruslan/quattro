@@ -1,7 +1,15 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  description: MyText
+  description: MyString
+  budget: 
+  startDate: 2012-11-15
+  finishDate: 2012-11-15
+  vehicle_id: 1
 
 two:
-  description: MyText
+  description: MyString
+  budget: 
+  startDate: 2012-11-15
+  finishDate: 2012-11-15
+  vehicle_id: 1

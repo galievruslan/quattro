@@ -1,5 +1,17 @@
 Quattro::Application.routes.draw do
+  resources :customers
+
+  resources :action_registrations
+
   resources :projects
+
+  resources :vehicles
+
+  resources :brands
+
+  resources :models
+
+  resources :bodies
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

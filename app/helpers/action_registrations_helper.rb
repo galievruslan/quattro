@@ -1,0 +1,2 @@
+module ActionRegistrationsHelper
+end

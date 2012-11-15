@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Brand:</b>
+  <%= @vehicle.brand_id %>
+</p>
+
+<p>
+  <b>Model:</b>
+  <%= @vehicle.model_id %>
+</p>
+
+<p>
+  <b>Body:</b>
+  <%= @vehicle.body_id %>
+</p>
+
+<p>
+  <b>Year:</b>
+  <%= @vehicle.year %>
+</p>
+
+
+<%= link_to 'Edit', edit_vehicle_path(@vehicle) %> |
+<%= link_to 'Back', vehicles_path %>
