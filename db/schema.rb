@@ -28,7 +28,6 @@ ActiveRecord::Schema.define(:version => 20121115072156) do
 
   create_table "brands", :force => true do |t|
     t.string   "name"
-    t.integer  "model_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -48,6 +47,7 @@ ActiveRecord::Schema.define(:version => 20121115072156) do
 
   create_table "models", :force => true do |t|
     t.string   "name"
+    t.integer  "brand_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
