@@ -1,5 +1,5 @@
 Quattro::Application.routes.draw do
-  get "dashboard/index"
+  get "home/index"
 
   resources :customers
 

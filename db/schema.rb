@@ -54,9 +54,9 @@ ActiveRecord::Schema.define(:version => 20121115072156) do
 
   create_table "projects", :force => true do |t|
     t.string   "description"
-    t.float    "budget"
-    t.date     "startDate"
-    t.date     "finishDate"
+    t.decimal  "budget"
+    t.date     "start_date"
+    t.date     "finish_date"
     t.integer  "vehicle_id"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
