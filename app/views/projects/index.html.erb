@@ -3,10 +3,7 @@
 <table>
   <tr>
     <th>Description</th>
-    <th>Budget</th>
-    <th>Startdate</th>
-    <th>Finishdate</th>
-    <th>Vehicle</th>
+    <th>Finish date</th>
     <th></th>
     <th></th>
     <th></th>
@@ -15,10 +12,7 @@
 <% @projects.each do |project| %>
   <tr>
     <td><%= project.description %></td>
-    <td><%= project.budget %></td>
-    <td><%= project.startDate %></td>
-    <td><%= project.finishDate %></td>
-    <td><%= project.vehicle_id %></td>
+    <td><%= project.finish_date %></td>
     <td><%= link_to 'Show', project %></td>
     <td><%= link_to 'Edit', edit_project_path(project) %></td>
     <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>

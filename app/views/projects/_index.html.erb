@@ -3,19 +3,13 @@
 <table>
   <tr>
     <th>Description</th>
-    <th>Budget</th>
-    <th>Startdate</th>
-    <th>Finishdate</th>
-    <th>Vehicle</th>
+    <th>Finish date</th>
   </tr>
 
 <% @projects.each do |project| %>
   <tr>
     <td><%= project.description %></td>
-    <td><%= project.budget %></td>
-    <td><%= project.startDate %></td>
-    <td><%= project.finishDate %></td>
-    <td><%= project.vehicle_id %></td>
+    <td><%= project.finish_date %></td>
   </tr>
 <% end %>
 </table>
