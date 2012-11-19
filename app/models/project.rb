@@ -1,6 +1,5 @@
 class Project < ActiveRecord::Base
-  attr_accessible :budget, :description, :finish_date, :start_date, :vehicle_id
-  has_only :vehicle
+  attr_accessible :description, :finish_date
+  has_and_belongs_to_many :vehicles
   validates :description, :presence => true
-  validates :vehicle_id, :presence => true
 end

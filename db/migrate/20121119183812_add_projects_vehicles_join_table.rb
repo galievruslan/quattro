@@ -1,0 +1,12 @@
+class AddProjectsVehiclesJoinTable < ActiveRecord::Migration
+  def self.up
+    create_table :projects_vehicles, :id => false do |t|
+      t.integer :project_id
+      t.integer :vehicle_id
+    end
+  end
+
+  def self.down
+    drop_table :projects_vehicles
+  end
+end

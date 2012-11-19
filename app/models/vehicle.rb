@@ -1,7 +1,8 @@
 class Vehicle < ActiveRecord::Base
-  attr_accessible :body_id, :model_id, :year
-  has_many :brands, :models, :bodys
-  belongs_to :project
+  attr_accessible :body_id, :model_id, :year, :model, :body
+  belongs_to :model
+  belongs_to :body
+  has_and_belongs_to_many :projects
   belongs_to :actionregistration
   validates :year, :presence => true
   validates :body_id, :presence => true
