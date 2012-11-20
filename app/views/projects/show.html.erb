@@ -6,25 +6,14 @@
 </p>
 
 <p>
-  <b>Budget:</b>
-  <%= @project.budget %>
+  <b>Finish_date:</b>
+  <%= @project.finish_date %>
 </p>
 
 <p>
-  <b>Startdate:</b>
-  <%= @project.startDate %>
+  <b>Thumb Image</b>
+  <%= image_tag @project.project_image.thumb('150x150#').url if @project.project_image %>
 </p>
-
-<p>
-  <b>Finishdate:</b>
-  <%= @project.finishDate %>
-</p>
-
-<p>
-  <b>Vehicle:</b>
-  <%= @project.vehicle_id %>
-</p>
-
 
 <%= link_to 'Edit', edit_project_path(@project) %> |
 <%= link_to 'Back', projects_path %>

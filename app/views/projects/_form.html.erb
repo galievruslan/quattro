@@ -1,4 +1,4 @@
-<%= form_for(@project) do |f| %>
+<%= form_for @project, :html => {:multipart => true}  do |f| %>
   <% if @project.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@project.errors.count, "error") %> prohibited this project from being saved:</h2>
@@ -16,20 +16,14 @@
     <%= f.text_field :description %>
   </div>
   <div class="field">
-    <%= f.label :budget %><br />
-    <%= f.text_field :budget %>
+    <%= f.label :finish_date %><br />
+    <%= f.date_select :finish_date %>
   </div>
   <div class="field">
-    <%= f.label :startDate %><br />
-    <%= f.date_select :startDate %>
-  </div>
-  <div class="field">
-    <%= f.label :finishDate %><br />
-    <%= f.date_select :finishDate %>
-  </div>
-  <div class="field">
-    <%= f.label :vehicle_id %><br />
-    <%= f.number_field :vehicle_id %>
+    <%= f.hidden_field :retained_project_image %>
+    <%= f.label :project_image %><br />
+    <%= f.check_box :remove_project_image %>
+    <%= f.file_field :project_image %>
   </div>
   <div class="actions">
     <%= f.submit %>
