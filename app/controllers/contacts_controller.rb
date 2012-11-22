@@ -3,11 +3,10 @@ class ContactController < ApplicationController
   # GET /contacts.json
   def index
     @contacts = Contact.find(:all)
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @contacts }
-    end
+    #respond_to do |format|
+    #  format.html # index.html.erb
+    #  format.json { render json: @contacts }
+    #end
   end
 
   # GET /contacts/1

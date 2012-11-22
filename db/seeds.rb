@@ -46,26 +46,29 @@ vahicles = Vehicle.create(
 @audi_q7_universal = Vehicle.find_by_model_id_and_body_id_and_year(@q7.id, @universal.id, 2011)
 @infinity_rx350_universal = Vehicle.find_by_model_id_and_body_id_and_year(@rx350.id, @universal.id, 2009)
 
-@first_project = Project.new({description: 'First project'})
+@first_project = Project.new({description: 'First project', finish_date: '2012-11-22'})
 @first_project.vehicles << @vw_jetta_sedan
 @first_project.project_image_uid = '2012/11/21/22_58_46_813_jetta.jpg'
 @first_project.project_image_name = 'jetta.jpg'
 @first_project.save()
 
-@second_project = Project.new({description: 'Second project'})
+@second_project = Project.new({description: 'Second project', finish_date: '2012-05-10'})
 @second_project.vehicles << @bmw_i320_sedan
 @second_project.project_image_uid = '2012/11/21/22_59_00_502_bmw3.jpeg'
 @second_project.project_image_name = 'bmw3.jpg'
 @second_project.save()
 
-@firth_project = Project.new({description: 'Firth project'})
+@firth_project = Project.new({description: 'Firth project', finish_date: '2011-07-13'})
 @firth_project.vehicles << @audi_q7_universal
 @firth_project.project_image_uid = '2012/11/21/22_59_19_343_q7.jpg'
 @firth_project.project_image_name = 'q7.jpg'
 @firth_project.save()
 
-@fourth_project = Project.new({description: 'Fourth project'})
+@fourth_project = Project.new({description: 'Fourth project', finish_date: '2010-03-08'})
 @fourth_project.vehicles << @infinity_rx350_universal
 @fourth_project.project_image_uid = '2012/11/21/22_59_45_437_infinity.jpg'
 @fourth_project.project_image_name = 'infinity.jpg'
 @fourth_project.save()
+
+emails= Email.create([{value: 'galievruslan@gmail.com'},{value: 'golfarid@gmail.com'},{value: 'yan.tsetsko@gmail.com'}])
+phones=Phone.create([{value: '8(925)482-36-14'},{value: '8(728)422-33-14'},{value: '8(995)082-46-16'}])

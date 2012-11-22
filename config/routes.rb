@@ -1,20 +1,17 @@
 Quattro::Application.routes.draw do
   get "home/index"
-
   resources :customers
-
   resources :action_registrations
-
-  resources :projects
-
   resources :vehicles
-
   resources :brands
-
   resources :models
-
   resources :bodies
-
+  resources :projects
+  root :to => 'pages#home'
+  match '/contact', :to => 'pages#contact'
+  #match '/projects', :to => 'pages#projects'
+  match '/about', :to => 'pages#about'
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

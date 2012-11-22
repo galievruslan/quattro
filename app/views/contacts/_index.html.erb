@@ -1,7 +1,13 @@
 <table>
+<tr>
+    <td>Тип контакта</td>
+    <td>Контакт</td> 
+  </tr>
 <% @contacts.each do |contact| %>
+  
   <tr>
-    <td><%= contact.value %></td>
+  <td><%= contact.type %></td>
+  <td><%= contact.value %></td>
   </tr>
 <% end %>
 </table>

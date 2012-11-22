@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Quattro</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
+  <title><%= title %></title>  
+  <%= csrf_meta_tag %>
+  <%= render 'layouts/stylesheets' %>
 </head>
-<body>
-<div id="header">
-</div>
-<%= yield %>
-
-</body>
+ <body>
+    <div id="container">
+      <%= render 'layouts/header' %>
+      <%= yield %>
+      <%= render 'layouts/footer' %>
+      <%= debug(params) if Rails.env.development? %>
+    </div>
+  </body>
 </html>
