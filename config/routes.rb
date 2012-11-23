@@ -1,4 +1,6 @@
 Quattro::Application.routes.draw do
+  resources :companies
+
   resources :project_photos
 
   get "home/index"

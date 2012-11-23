@@ -13,8 +13,7 @@ class ProjectPhotosController < ApplicationController
   # GET /project_photos/1
   # GET /project_photos/1.json
   def show
-    @project_photo = ProjectPhoto.find(params[:id])
-
+    @project_photo = ProjectPhoto.find(params[:id])    
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @project_photo }

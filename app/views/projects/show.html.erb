@@ -15,7 +15,16 @@
   <b>Thumb Image</b>
 <p>
 </p>
-  <%= image_tag @project.project_image.thumb('150x150#').url if @project.project_image %>
+  <%= image_tag @project.project_photos.find_by_default(true).image.thumb('150x150#').url if @project.project_photos.find_by_default(true).image %>
+</p>
+
+<p>
+  <b>Project Image</b>
+<p>
+</p>
+<% @project.project_photos.each do |photo|%>
+<%= image_tag photo.image.thumb('50x50#').url if photo.image %>
+<%end%>
 </p>
 
 

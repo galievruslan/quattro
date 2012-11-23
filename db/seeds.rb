@@ -49,31 +49,29 @@ vahicles = Vehicle.create(
 
 @first_project = Project.new({description: 'First project', finish_date: '2012-11-22'})
 @first_project.vehicles << @vw_jetta_sedan
-@first_project.project_image_uid = '2012/11/21/22_58_46_813_jetta.jpg'
-@first_project.project_image_name = 'jetta.jpg'
 @first_project.save()
 
 @second_project = Project.new({description: 'Second project', finish_date: '2012-05-10'})
 @second_project.vehicles << @bmw_i320_sedan
-@second_project.project_image_uid = '2012/11/21/22_59_00_502_bmw3.jpeg'
-@second_project.project_image_name = 'bmw3.jpg'
 @second_project.save()
 
 @firth_project = Project.new({description: 'Firth project', finish_date: '2011-07-13'})
 @firth_project.vehicles << @audi_q7_universal
-@firth_project.project_image_uid = '2012/11/21/22_59_19_343_q7.jpg'
-@firth_project.project_image_name = 'q7.jpg'
 @firth_project.save()
 
 @fourth_project = Project.new({description: 'Fourth project', finish_date: '2010-03-08'})
 @fourth_project.vehicles << @infinity_rx350_universal
-@fourth_project.project_image_uid = '2012/11/21/22_59_45_437_infinity.jpg'
-@fourth_project.project_image_name = 'infinity.jpg'
 @fourth_project.save()
+
+@company = Company.create(description: 'Лаборатория автомобильной эстетики Quattro, мы делаем ваши автомобили произведением исскуства')
 
 emails= Email.create([{value: 'galievruslan@gmail.com'},{value: 'golfarid@gmail.com'},{value: 'yan.tsetsko@gmail.com'}])
 phones=Phone.create([{value: '8(925)482-36-14'},{value: '8(728)422-33-14'},{value: '8(995)082-46-16'}])
 addresses=Address.create([{value: 'г.Казань, ул. Восстания,131'},{value: 'г.Казань, ул. Техническая,21'},{value: 'г.Казань, ул. Московская,24'}])
+
+@company.contacts << emails
+@company.contacts << phones
+@company.contacts << addresses
 
 first_project_photos=ProjectPhoto.create({default: true,image_name: "Getz_1.jpg", image_uid: "2012/11/23/13_50_07_759_Getz_1.jpg"})
 second_project_photos=ProjectPhoto.create([{default: true, image_name: "Kalina_green_1.jpg", image_uid: "2012/11/23/13_50_18_507_Kalina_green_1.jpg"},{default: false, image_name: "Kalina_green_2.jpg", image_uid: "2012/11/23/13_50_34_804_Kalina_green_2.jpg"},{default: false, image_name: "Kalina_green_3.jpg", image_uid: "2012/11/23/13_51_23_370_Kalina_green_3.jpg"}])

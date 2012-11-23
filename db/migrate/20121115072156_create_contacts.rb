@@ -2,6 +2,7 @@ class CreateContacts < ActiveRecord::Migration
   def self.up
     create_table :contacts do |t|
       t.string :value
+      t.integer :company_id
       # class type needed for STI
       t.string :type
 

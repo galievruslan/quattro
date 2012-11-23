@@ -1,11 +1,11 @@
 <%a=0%>
 <% @projects.each do |project| %>
-  <% if (!project.nil? && project.project_image)%>
+  <% if (!project.nil? && project.project_photos.find_by_default(true))%>
     <% if a==0%>
-     <%=link_to(project) do image_tag(project.project_image.thumb('330x330#').url, :id=>"startAtMe") end%>
+     <%=link_to(project) do image_tag(project.project_photos.find_by_default(true).image.thumb('330x330#').url, :id=>"startAtMe") end%>
       <%a=1%>
     <% else %>
-    <a href="#"><%=link_to(project) do  image_tag(project.project_image.thumb('330x330#').url) end%></a>
+    <a href="#"><%=link_to(project) do  image_tag(project.project_photos.find_by_default(true).image.thumb('330x330#').url) end%></a>
     <% end %>
   <% end %>
 <% end %>
