@@ -1,3 +1,4 @@
+# encoding: UTF-8
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
 #
@@ -72,3 +73,15 @@ vahicles = Vehicle.create(
 
 emails= Email.create([{value: 'galievruslan@gmail.com'},{value: 'golfarid@gmail.com'},{value: 'yan.tsetsko@gmail.com'}])
 phones=Phone.create([{value: '8(925)482-36-14'},{value: '8(728)422-33-14'},{value: '8(995)082-46-16'}])
+addresses=Address.create([{value: 'г.Казань, ул. Восстания,131'},{value: 'г.Казань, ул. Техническая,21'},{value: 'г.Казань, ул. Московская,24'}])
+
+first_project_photos=ProjectPhoto.create({default: true,image_name: "Getz_1.jpg", image_uid: "2012/11/23/13_50_07_759_Getz_1.jpg"})
+second_project_photos=ProjectPhoto.create([{default: true, image_name: "Kalina_green_1.jpg", image_uid: "2012/11/23/13_50_18_507_Kalina_green_1.jpg"},{default: false, image_name: "Kalina_green_2.jpg", image_uid: "2012/11/23/13_50_34_804_Kalina_green_2.jpg"},{default: false, image_name: "Kalina_green_3.jpg", image_uid: "2012/11/23/13_51_23_370_Kalina_green_3.jpg"}])
+firth_project_photos=ProjectPhoto.create([{default: true, image_name: "Niva_1.jpg", image_uid: "2012/11/23/13_51_36_310_Niva_1.jpg"},{default: false, image_name: "Niva_2.jpg", image_uid: "2012/11/23/13_51_53_869_Niva_2.jpg"},
+{default: false, image_name: "Niva_3.jpg", image_uid: "2012/11/23/13_52_07_657_Niva_3.jpg"},{default: false, image_name: "Niva_4.jpg", image_uid: "2012/11/23/13_52_22_621_Niva_4.jpg"},{default: false, image_name: "Niva_5.jpg", image_uid: "2012/11/23/13_52_34_93_Niva_5.jpg"}])
+fourth_project_photos=ProjectPhoto.create([{default: true, image_name: "Sylphy_1.jpg", image_uid: "2012/11/23/13_52_58_537_Sylphy_1.jpg",project_id: @fourth_project.id},{default: false, image_name: "Sylphy_2.jpg", image_uid: "2012/11/23/13_53_09_845_Sylphy_2.jpg"},
+{default: false, image_name: "Sylphy_3.jpg", image_uid: "2012/11/23/13_53_24_18_Sylphy_3.jpg"}])
+@first_project.project_photos << first_project_photos
+@second_project.project_photos << second_project_photos
+@firth_project.project_photos << firth_project_photos
+@fourth_project.project_photos << fourth_project_photos

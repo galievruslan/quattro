@@ -1,4 +1,6 @@
 Quattro::Application.routes.draw do
+  resources :project_photos
+
   get "home/index"
   resources :customers
   resources :action_registrations
@@ -7,6 +9,7 @@ Quattro::Application.routes.draw do
   resources :models
   resources :bodies
   resources :projects
+  resources :project_photo
   root :to => 'pages#home'
   match '/contact', :to => 'pages#contact'
   #match '/projects', :to => 'pages#projects'

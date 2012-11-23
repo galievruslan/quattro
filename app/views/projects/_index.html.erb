@@ -2,10 +2,10 @@
 <% @projects.each do |project| %>
   <% if (!project.nil? && project.project_image)%>
     <% if a==0%>
-      <a href="#"><%= image_tag(project.project_image.thumb('330x330#').url, :id=>"startAtMe")%></a>
+     <%=link_to(project) do image_tag(project.project_image.thumb('330x330#').url, :id=>"startAtMe") end%>
       <%a=1%>
     <% else %>
-    <a href="#"><%= image_tag(project.project_image.thumb('330x330#').url)%></a>
+    <a href="#"><%=link_to(project) do  image_tag(project.project_image.thumb('330x330#').url) end%></a>
     <% end %>
   <% end %>
 <% end %>

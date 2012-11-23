@@ -14,7 +14,7 @@
   <tr>
     <td><%= project.description %></td>
     <td><%= project.finish_date %></td>
-    <td><a href="#"><%= image_tag project.project_image.thumb('50x50#').url %></a></td>
+    <td><%= image_tag project.project_image.thumb('50x50#').url %></td>
     <td><%= link_to 'Show', project %></td>
     <td><%= link_to 'Edit', edit_project_path(project) %></td>
     <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>

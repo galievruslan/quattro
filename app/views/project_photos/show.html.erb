@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Default:</b>
+  <%= @project_photo.default %>
+</p>
+
+<p>
+  <b>Image name:</b>
+  <%= @project_photo.image_name %>
+</p>
+
+<p>
+  <b>Image uid:</b>
+  <%= @project_photo.image_uid %>
+</p>
+<b>Thumb Image</b>
+<p>
+</p>
+  <%= image_tag @project_photo.image.thumb('150x150#').url if @project_photo.image %>
+</p>
+
+
+<%= link_to 'Edit', edit_project_photo_path(@project_photo) %> |
+<%= link_to 'Back', project_photos_path %>

@@ -1,0 +1,31 @@
+<h1>Listing project_photos</h1>
+
+<table>
+  <tr>
+    <th>Default</th>
+    <th>Image name</th>
+    <th>Image uid</th>
+    <th>Project id</th>
+    <th>Image</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @project_photos.each do |project_photo| %>
+  <tr>
+    <td><%= project_photo.default %></td>
+    <td><%= project_photo.image_name %></td>
+    <td><%= project_photo.image_uid %></td>
+    <td><%= project_photo.project_id %></td>
+    <td><%= image_tag project_photo.image.thumb('50x50#').url %></td>
+    <td><%= link_to 'Show', project_photo %></td>
+    <td><%= link_to 'Edit', edit_project_photo_path(project_photo) %></td>
+    <td><%= link_to 'Destroy', project_photo, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Project photo', new_project_photo_path %>
