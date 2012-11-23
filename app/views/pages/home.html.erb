@@ -1,10 +1,29 @@
 <section id="slidebar" class="round">
-<P>Здесь будет слайдбар</p>
+<div id="makeMeScrollable">
+		<div class="scrollingHotSpotLeft"></div>
+		<div class="scrollingHotSpotRight"></div>
+		<div class="scrollWrapper">
+			<div class="scrollableArea">
+        
+			  <%= render :partial => '/projects/index', :object => @projects %> 
+			  
+				<!--<a href="#"><img src="assets/slidebar/field.jpg" alt="Demo image" width="497" height="330" border="0" /></a>
+				<a href="#"><img src="assets/slidebar/gnome.jpg" alt="Demo image" width="496" height="330" /></a>
+				<a href="#"><img src="assets/slidebar/pencils.jpg" alt="Demo image" width="496" height="330" /></a>
+				<a href="#"><img src="assets/slidebar/golf.jpg" alt="Demo image" width="366" height="330" id="startAtMe" /></a>
+				<a href="#"><img src="assets/slidebar/river.jpg" alt="Demo image" width="496" height="330" /></a>
+				<a href="#"><img src="assets/slidebar/train.jpg" alt="Demo image" width="440" height="330" /></a>
+
+				<a href="#"><img src="assets/slidebar/leaf.jpg" alt="Demo image" width="496" height="330" /></a>
+				<a href="#"><img src="assets/slidebar/dog.jpg" alt="Demo image" width="497" height="330"/>	</a>-->		
+			</div>
+		</div>
+	</div>
 </section>
 <section id="main" class="round">
 <div id="contacts">
   <div id="map">
-    <iframe width="350" height="300" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src= "https://maps.google.com/?ie=UTF8&amp;ll=53.331645,-6.250513&amp;spn=0.00275,0.004474&amp;t=h&amp;z=18&amp;output=embed">
+    <iframe width="430" height="300" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src= "https://maps.google.com/?ie=UTF8&amp;ll=53.331645,-6.250513&amp;spn=0.00275,0.004474&amp;t=h&amp;z=18&amp;output=embed">
     </iframe>
     <br/>
   </div>

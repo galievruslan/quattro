@@ -1,25 +1,11 @@
-<h1>Список проектов</h1>
-
-<table>
-  <tr>
-    <th>Описание</th>
-    <th>Дата окончания</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
+<%a=0%>
 <% @projects.each do |project| %>
-  <tr>
-    <td><%= project.description %></td>
-    <td><%= project.finish_date %></td>
-    <td><%= link_to 'Show', project %></td>
-    <td><%= link_to 'Edit', edit_project_path(project) %></td>
-    <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
+  <% if (!project.nil? && project.project_image)%>
+    <% if a==0%>
+      <a href="#"><%= image_tag(project.project_image.thumb('330x330#').url, :id=>"startAtMe")%></a>
+      <%a=1%>
+    <% else %>
+    <a href="#"><%= image_tag(project.project_image.thumb('330x330#').url)%></a>
+    <% end %>
+  <% end %>
 <% end %>
-</table>
-
-<br />
-
-<%= link_to 'New Project', new_project_path %>
