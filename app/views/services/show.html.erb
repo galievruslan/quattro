@@ -1,0 +1,17 @@
+<section id="main" class="round">
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Наименование:</b>
+  <%= @service.name %>
+</p>
+
+<p>
+  <b>Описание:</b>
+  <%= @service.description %>
+</p>
+
+
+<%= link_to 'Edit', edit_service_path(@service) %> |
+<%= link_to 'Back', services_path %>
+</section>

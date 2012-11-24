@@ -1,27 +1,33 @@
 <section id="main" class="round">
+<%@project.rating=@project.rating+1%>
+<%@project.save%>
 <p id="notice"><%= notice %></p>
-
 <p>
+  <b>Name:</b>
+  <%= @project.name %><br>
+  <b>Rating:</b>
+  <%= @project.rating %><br>
   <b>Description:</b>
-  <%= @project.description %>
-</p>
-
-<p>
+  <%= @project.description %><br>
   <b>Finish_date:</b>
-  <%= @project.finish_date %>
+  <%= @project.finish_date %><br>
+  <b>Services:</b>
+  <% @project.services.each do |service|%>
+  <%= link_to service.name , service%><br>
+  <%end%>
+  <b>Vehicles:</b>
+  <% @project.vehicles.each do |vehicle|%>
+  <%=vehicle.model.brand.name%>,<%=vehicle.model.name%>,<%=vehicle.body.name%>,<%=vehicle.year%><br>
+  <%end%>
 </p>
-
 <p>
-  <b>Thumb Image</b>
-<p>
-</p>
-  <%= image_tag @project.project_photos.find_by_default(true).image.thumb('150x150#').url if @project.project_photos.find_by_default(true).image %>
+<%= image_tag @project.project_photos.find_by_default(true).image.thumb('150x150#').url if @project.project_photos.find_by_default(true).image %>
 </p>
 
 <p>
   <b>Project Image</b>
-<p>
 </p>
+<p>
 <% @project.project_photos.each do |photo|%>
 <%= image_tag photo.image.thumb('50x50#').url if photo.image %>
 <%end%>

@@ -47,19 +47,19 @@ vahicles = Vehicle.create(
 @audi_q7_universal = Vehicle.find_by_model_id_and_body_id_and_year(@q7.id, @universal.id, 2011)
 @infinity_rx350_universal = Vehicle.find_by_model_id_and_body_id_and_year(@rx350.id, @universal.id, 2009)
 
-@first_project = Project.new({description: 'First project', finish_date: '2012-11-22'})
+@first_project = Project.new({description: 'First project', finish_date: '2012-11-22', name:'Первый проект', rating:0})
 @first_project.vehicles << @vw_jetta_sedan
 @first_project.save()
 
-@second_project = Project.new({description: 'Second project', finish_date: '2012-05-10'})
+@second_project = Project.new({description: 'Second project', finish_date: '2012-05-10', name:'Второй проект', rating:0})
 @second_project.vehicles << @bmw_i320_sedan
 @second_project.save()
 
-@firth_project = Project.new({description: 'Firth project', finish_date: '2011-07-13'})
+@firth_project = Project.new({description: 'Firth project', finish_date: '2011-07-13', name:'Третий проект', rating:0})
 @firth_project.vehicles << @audi_q7_universal
 @firth_project.save()
 
-@fourth_project = Project.new({description: 'Fourth project', finish_date: '2010-03-08'})
+@fourth_project = Project.new({description: 'Fourth project', finish_date: '2010-03-08', name:'Четвертый проект', rating:0})
 @fourth_project.vehicles << @infinity_rx350_universal
 @fourth_project.save()
 
@@ -72,6 +72,15 @@ addresses=Address.create([{value: 'г.Казань, ул. Восстания,131
 @company.contacts << emails
 @company.contacts << phones
 @company.contacts << addresses
+
+@service1=Service.create({name: 'обклейка', description: 'обклейка машин пленкой'})
+@service2=Service.create({name: 'тонировка', description: 'тонировка стекол автомобиля пленкой'})
+@service3=Service.create({name: 'карбон 3D', description: 'обклейка машин пленкой карбон 3D'})
+@service4=Service.create({name: 'бронирование', description: 'бронирование машин от сколов'})
+@first_project.services << [@service1,@service2]
+@second_project.services << @service2
+@firth_project.services << [@service3,@service4]
+@fourth_project.services << @service4
 
 first_project_photos=ProjectPhoto.create({default: true,image_name: "Getz_1.jpg", image_uid: "2012/11/23/13_50_07_759_Getz_1.jpg"})
 second_project_photos=ProjectPhoto.create([{default: true, image_name: "Kalina_green_1.jpg", image_uid: "2012/11/23/13_50_18_507_Kalina_green_1.jpg"},{default: false, image_name: "Kalina_green_2.jpg", image_uid: "2012/11/23/13_50_34_804_Kalina_green_2.jpg"},{default: false, image_name: "Kalina_green_3.jpg", image_uid: "2012/11/23/13_51_23_370_Kalina_green_3.jpg"}])
