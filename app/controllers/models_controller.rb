@@ -2,7 +2,13 @@ class ModelsController < ApplicationController
   # GET /models
   # GET /models.json
   def index
-    @models = Model.all
+
+    @models
+    if (params.has_key?('brand_id'))
+      @models = Model.find_by_brand_id(params[:brand_id])
+    else
+      @model = Model.all
+    end    
 
     respond_to do |format|
       format.html # index.html.erb

@@ -1,25 +1,26 @@
-<%= form_for(@action_registration) do |f| %>
-  <% if @action_registration.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@action_registration.errors.count, "error") %> prohibited this action_registration from being saved:</h2>
+<% content_for :stylesheets do %>
+  <%= stylesheet_link_tag 'action_registrations' %>
+<% end %>
+<% content_for :javascripts do %>
+  <%= javascript_include_tag 'action_registrations' %>
+<% end %>
+<%= form_tag('create') do %>
 
-      <ul>
-      <% @action_registration.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
+  <div class="field">
+    <div id="dd" class="wrapper-dropdown-3" tabindex="1">      
+      <span>Brand</span>      
+      <ul class="dropdown">
+        <% @brands = Brand.all %>
+        <% @brands.each do |brand| %>
+          <li value=<%= brand.id %>><a href="#"><i class="icon-large"></i><%= brand.name %></a></li>          
+        <% end %>
       </ul>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :customer_id %><br />
-    <%= f.number_field :customer_id %>
   </div>
   <div class="field">
-    <%= f.label :vehicle_id %><br />
-    <%= f.number_field :vehicle_id %>
+    <%= hidden_field_tag 'model_id'%>
   </div>
-  <div class="actions">
-    <%= f.submit %>
+  <div class="field">
+    <%= hidden_field_tag 'body_id'%>
   </div>
 <% end %>
