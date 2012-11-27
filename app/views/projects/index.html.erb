@@ -1,3 +1,6 @@
+<% content_for :stylesheets do %>
+<%= stylesheet_link_tag 'css3_3d', :media => 'screen' %>
+<%end%>
 <section id="main" class="round"><h1>Список проектов</h1>
 <ul id="grid" class="group">    
 <% @projects.each do |project| %>

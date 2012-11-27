@@ -10,7 +10,10 @@
       </ul>
     </div>
   <% end %>
-
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
   <div class="field">
     <%= f.label :description %><br />
     <%= f.text_field :description %>
@@ -20,10 +23,8 @@
     <%= f.date_select :finish_date %>
   </div>
   <div class="field">
-    <%= f.hidden_field :retained_project_image %>
-    <%= f.label :project_image %><br />
-    <%= f.check_box :remove_project_image %>
-    <%= f.file_field :project_image %>
+  <%= f.file_field :project_photos, :name => 'photos[]', :multiple => true %>
+  
   </div>
   <div class="actions">
     <%= f.submit %>

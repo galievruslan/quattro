@@ -41,6 +41,12 @@ class ProjectsController < ApplicationController
   # POST /projects.json
   def create
     @project = Project.new(params[:project])
+    @project.rating=0
+    unless params[:photos].nil?
+        params[:photos].each do |photo|
+        @project.project_photos << ProjectPhoto.create(:image => photo)
+        end
+    end
 
     respond_to do |format|
       if @project.save

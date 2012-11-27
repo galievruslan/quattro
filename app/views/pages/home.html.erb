@@ -1,3 +1,10 @@
+<% content_for :stylesheets do %>
+<%= stylesheet_link_tag 'smoothDivScroll', :media => 'screen' %>
+<%end%>
+<% content_for :javascripts do %>
+<%= javascript_include_tag 'SmoothDivScroll/jquery.ui.widget' %>
+<%= javascript_include_tag 'SmoothDivScroll/jquery.smoothDivScroll-1.0-min' %>
+<%end%>
 <section id="slidebar" class="round">
 <div id="makeMeScrollable">
 		<div class="scrollingHotSpotLeft"></div>
