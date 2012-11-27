@@ -1,39 +1,41 @@
+<% content_for :stylesheets do %>
+<%= stylesheet_link_tag 'nivo-slider' %>
+<%end%>
+<% content_for :javascripts do %>
+<%= javascript_include_tag 'nanoSlider/jquery.nivo.slider' %>
+<%end%>
 <section id="main" class="round">
 <%@project.rating=@project.rating+1%>
 <%@project.save%>
-<p id="notice"><%= notice %></p>
+<div id="projectInfo">
 <p>
-  <b>Name:</b>
+  <b>Имя проекта:</b>
   <%= @project.name %><br>
-  <b>Rating:</b>
-  <%= @project.rating %><br>
-  <b>Description:</b>
-  <%= @project.description %><br>
-  <b>Finish_date:</b>
+  <b>Рейтинга проекта:</b>
+  <%= @project.rating %><br>  
+  <b>Дата проекта:</b>
   <%= @project.finish_date %><br>
-  <b>Services:</b>
+  <b>Оказанные услуги:</b>
   <% @project.services.each do |service|%>
-  <%= link_to service.name , service%><br>
-  <%end%>
-  <b>Vehicles:</b>
+  <%= link_to service.name , service%>,
+  <%end%><br>
+  <b>Автомобиль:</b>
   <% @project.vehicles.each do |vehicle|%>
   <%=vehicle.model.brand.name%>,<%=vehicle.model.name%>,<%=vehicle.body.name%>,<%=vehicle.year%><br>
   <%end%>
+  <b>Описание:</b>
+  <%= @project.description %><br>
 </p>
-<p>
-<%= image_tag @project.project_photos.find_by_default(true).image.thumb('150x150#').url if @project.project_photos.find_by_default(true).image %>
-</p>
-
-<p>
-  <b>Project Image</b>
-</p>
-<p>
-<% @project.project_photos.each do |photo|%>
-<%= image_tag photo.image.thumb('50x50#').url if photo.image %>
-<%end%>
-</p>
-
-
-<%= link_to 'Edit', edit_project_path(@project) %> |
-<%= link_to 'Back', projects_path %>
+</div>
+<div id="projectPhotos">
+<div id="wrap">                 
+                     <section class="slider-wrapper">
+                        <div id="slider" class="nivoSlider">
+                           <% @project.project_photos.each do |photo|%> 
+                           <%= image_tag photo.image.thumb('450x300#').url if photo.image %>
+                           <%end%>
+                        </div>
+                     </section>
+      </div>
+</div>
 </section>
