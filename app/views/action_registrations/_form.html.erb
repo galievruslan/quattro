@@ -7,7 +7,7 @@
 <%= form_tag('create') do %>
 
   <div class="field">
-    <div id="dd" class="wrapper-dropdown-3" tabindex="1">      
+    <div id="brands" class="wrapper-dropdown-3" tabindex="1">      
       <span>Brand</span>      
       <ul class="dropdown">
         <% @brands = Brand.all %>
@@ -17,10 +17,27 @@
       </ul>
     </div>
   </div>
-  <div class="field">
-    <%= hidden_field_tag 'model_id'%>
+  <div id="modelsPlaceHolder" class="field">
+    <div id="models" class="wrapper-dropdown-3" tabindex="1">      
+      <span>Models</span>      
+      <ul class="dropdown">
+      </ul>
+    </div>
+  </div>
+  <div id="bodiesPlaceHolder" class="field">
+    <div id="bodies" class="wrapper-dropdown-3" tabindex="1">      
+      <span>Bodies</span>      
+      <ul class="dropdown">
+      </ul>
+    </div>
   </div>
   <div class="field">
-    <%= hidden_field_tag 'body_id'%>
+    <%= label_tag 'email', 'EMail' %>
+    <%= email_field_tag 'email'%>
   </div>
+  <div class="field">
+    <%= label_tag 'phone', 'Phone' %>
+    <%= telephone_field_tag 'phone' %>
+  </div>
+  <%= submit_tag "Register!" %>
 <% end %>

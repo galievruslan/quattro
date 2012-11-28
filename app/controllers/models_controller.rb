@@ -5,9 +5,9 @@ class ModelsController < ApplicationController
 
     @models
     if (params.has_key?('brand_id'))
-      @models = Model.find_by_brand_id(params[:brand_id])
+      @models = Model.find_all_by_brand_id(params[:brand_id])
     else
-      @model = Model.all
+      @models = Model.all
     end    
 
     respond_to do |format|
