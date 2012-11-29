@@ -4,60 +4,63 @@ function brand_selected(brand_id){
         url: '/models',
         data: {'brand_id': brand_id},
         success: function(json){
-			create_list(json, $('#modelsPlaceHolder'), 'models', model_selected);
+			create_list(json, '#modelsPlaceHolder', '#modelsListTemplate', 'models', model_selected);
 		},
 		dataType: 'json'
 	});
+
+	$('#bodies').remove();
+	$('#brand_id').val(brand_id);
+	$('#model_id').val(null);
+	$('#body_id').val(null);
 }
 
-function model_selected(){
+function model_selected(model_id){
 	$.ajax({
         type: 'GET',
         url: '/bodies',
         data: {},
         success: function(json){
-			create_list(json, $('#bodiesPlaceHolder'), 'bodies', body_selected);
+			create_list(json, '#bodiesPlaceHolder', '#bodiesListTemplate', 'bodies', body_selected);
 		},
 		dataType: 'json'
 	});
+
+	$('#model_id').val(model_id);
+	$('#body_id').val(null);
 }
 
-function body_selected(){
-
+function body_selected(body_id){
+	$('#body_id').val(body_id);
 }
 
-function create_list(data, placeholder, dropdown_id, click_callback) {
-	var listName = $(placeholder).find('span').html();
-	var contendDiv = '<div id="' + dropdown_id + '" class="wrapper-dropdown-3" tabindex="1">\n';
-	contendDiv += '\t<span>' + listName + '</span>\n';
-	var list = '\t\t<ul class="dropdown">\n';
-   	$.each(data, function() {
-   		listItem = '\t\t\t<li value=' + this.id + ">\n";
-   		listItem += "\t\t\t\t<a href=\"#\">\n";
-   		listItem += "\t\t\t\t\t<i class=\"icon-large\"></i>\n";
-   		listItem += this.name;
-    	listItem += "\t\t\t\t</a>\n";
-    	listItem += "\t\t\t</li>\n";
-	   	list += listItem;
-	});	
-	list += '\t\t</ul>\n';
-	contendDiv += list;
-   	contendDiv += '</div>\n';
-    $(placeholder).html(contendDiv);
-    var dd = new DropDown( $('#' + dropdown_id), click_callback );
+function create_list(data, placeholder, template, newId, clickCallback) {
+	var listTemplate = $(template).clone();	
+	listTemplate.first().attr('id', newId);
+
+	$.each(data, function() {
+		var listItemTemplate = $('#listItemTemplate').clone();
+		listItemTemplate.removeAttr('id');
+		listItemTemplate.attr('value', this.id);		
+		listItemTemplate.find('a').append(this.name);
+		listTemplate.find('.dropdown').append(listItemTemplate);
+	});
+
+	$(placeholder).html($(listTemplate));
+	var dd = new DropDown( $('#' + newId), clickCallback );
 }
 
-function DropDown(el, click_callback) {
+function DropDown(el, clickCallback) {
 	this.dd = el;
 	this.placeholder = this.dd.children('span');
 	this.opts = this.dd.find('ul.dropdown > li');
 	this.val = '';
 	this.index = -1;
-	this.initEvents(click_callback);
+	this.initEvents(clickCallback);
 }
 
 DropDown.prototype = {
-	initEvents : function(click_callback) {
+	initEvents : function(clickCallback) {
 		var obj = this;
 
 		obj.dd.bind('click', function(event){
@@ -70,7 +73,7 @@ DropDown.prototype = {
 			obj.val = opt.text();						
 			obj.index = opt.index();
 			obj.placeholder.text(obj.val);
-			click_callback(opt.attr("value"));
+			clickCallback(opt.attr("value"));
 		});
 	},
 	getValue : function() {

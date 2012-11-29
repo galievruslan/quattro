@@ -41,9 +41,10 @@ ActiveRecord::Schema.define(:version => 20121124120850) do
   create_table "contacts", :force => true do |t|
     t.string   "value"
     t.integer  "company_id"
+    t.integer  "customer_id"
     t.string   "type"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "customers", :force => true do |t|
@@ -97,10 +98,9 @@ ActiveRecord::Schema.define(:version => 20121124120850) do
   create_table "vehicles", :force => true do |t|
     t.integer  "model_id"
     t.integer  "body_id"
-    t.integer  "actionregistration_id"
     t.integer  "year"
-    t.datetime "created_at",            :null => false
-    t.datetime "updated_at",            :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
 end

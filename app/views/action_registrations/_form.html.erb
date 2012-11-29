@@ -4,9 +4,10 @@
 <% content_for :javascripts do %>
   <%= javascript_include_tag 'action_registrations' %>
 <% end %>
-<%= form_tag('create') do %>
+<%= form_tag('/action_registrations') do %>
 
   <div class="field">
+    <%= hidden_field_tag 'brand_id' %>
     <div id="brands" class="wrapper-dropdown-3" tabindex="1">      
       <span>Brand</span>      
       <ul class="dropdown">
@@ -17,19 +18,19 @@
       </ul>
     </div>
   </div>
-  <div id="modelsPlaceHolder" class="field">
-    <div id="models" class="wrapper-dropdown-3" tabindex="1">      
-      <span>Models</span>      
-      <ul class="dropdown">
-      </ul>
+  <div class="field">
+    <%= hidden_field_tag 'model_id' %>
+    <div id="modelsPlaceHolder" class="field">
     </div>
   </div>
-  <div id="bodiesPlaceHolder" class="field">
-    <div id="bodies" class="wrapper-dropdown-3" tabindex="1">      
-      <span>Bodies</span>      
-      <ul class="dropdown">
-      </ul>
+  <div class="field">
+    <%= hidden_field_tag 'body_id' %>
+    <div id="bodiesPlaceHolder" class="field">
     </div>
+  </div>
+  <div class="field">
+    <%= label_tag 'year', 'Year' %>
+    <%= number_field_tag 'year', nil, :in => 1980...2014%>
   </div>
   <div class="field">
     <%= label_tag 'email', 'EMail' %>
@@ -41,3 +42,16 @@
   </div>
   <%= submit_tag "Register!" %>
 <% end %>
+<div id="Templates">
+  <div id="modelsListTemplate" class="wrapper-dropdown-3" tabindex="1">      
+    <span>Models</span>      
+    <ul class="dropdown">
+    </ul>
+  </div>
+  <div id="bodiesListTemplate" class="wrapper-dropdown-3" tabindex="1">      
+    <span>Bodies</span>      
+    <ul class="dropdown">
+    </ul>
+  </div>
+  <li id="listItemTemplate"><a href="#"><i class="icon-large"></i></a></li>
+</div>

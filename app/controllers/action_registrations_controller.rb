@@ -40,7 +40,59 @@ class ActionRegistrationsController < ApplicationController
   # POST /action_registrations
   # POST /action_registrations.json
   def create
-    @action_registration = ActionRegistration.new(params[:action_registration])
+    @action_registration = ActionRegistration.new
+
+    @brand
+    if (params.has_key?(:brand_id))
+      @brand = Brand.find(params[:brand_id])
+    else
+      @action_registration.errors.add(:brand_id, "wasn't filled in")
+    end
+
+    @model
+    if (params.has_key?(:model_id))
+      @model = @brand.models.find(params[:model_id])
+    else
+      @action_registration.errors.add(:model_id, "wasn't filled in")
+    end
+
+    @body
+    if (params.has_key?(:body_id))
+      @body = Body.find(params[:body_id])
+    else
+      @action_registration.errors.add(:body_id, "wasn't filled in")
+    end
+
+    @year
+    if (params.has_key?(:year))
+      @year = params[:year]
+    else
+      @action_registration.errors.add(:year, "wasn't filled in")
+    end    
+
+    @customer = Customer.new({:name => "some customer name"})
+
+    @phone
+    if (params.has_key?(:phone))
+      @phone = Phone.new({:value => params[:phone]})
+      @customer.contacts << @phone
+    end
+
+    @email
+    if (params.has_key?(:email))
+      @email = Email.new({:value => params[:email]})
+      @customer.contacts << @email
+    end
+
+    if (!@phone && !@email)
+      @action_registration.errors.add("email or phone shuld be filled in")
+    end
+
+    if (@action_registration.errors.empty?)
+      #@customer.save
+      @vehicle = Vehicle.new({:model => @model, :body => @body, :year => @year})      
+      @action_registration = ActionRegistration.new({:vehicle => @vehicle, :customer => @customer})
+    end
 
     respond_to do |format|
       if @action_registration.save

@@ -3,7 +3,7 @@ class Vehicle < ActiveRecord::Base
   belongs_to :model
   belongs_to :body
   has_and_belongs_to_many :projects
-  belongs_to :actionregistration
+  has_many :action_registrations
   validates :year, :presence => true
   validates :body_id, :presence => true
   validates :model_id, :presence => true
