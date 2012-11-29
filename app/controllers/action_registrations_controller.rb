@@ -89,8 +89,8 @@ class ActionRegistrationsController < ApplicationController
     end
 
     if (@action_registration.errors.empty?)
-      #@customer.save
-      @vehicle = Vehicle.new({:model => @model, :body => @body, :year => @year})      
+      @customer.save
+      @vehicle = Vehicle.create({:model => @model, :body => @body, :year => @year})      
       @action_registration = ActionRegistration.new({:vehicle => @vehicle, :customer => @customer})
     end
 
