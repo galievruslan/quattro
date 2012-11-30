@@ -85,7 +85,13 @@ DropDown.prototype = {
 }
 
 $(function() {
-	var dd = new DropDown( $('#brands'), brand_selected );	
+	new DropDown( $('#brands'), brand_selected );
+	if ($('#models')){
+		new DropDown( $('#models'), model_selected );
+	}
+	if ($('#bodies')) {
+		new DropDown( $('#bodies'), body_selected );
+	}
 
 	$(document).click(function() {
 		// all dropdowns

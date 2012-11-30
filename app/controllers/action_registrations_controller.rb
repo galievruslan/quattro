@@ -43,28 +43,28 @@ class ActionRegistrationsController < ApplicationController
     @action_registration = ActionRegistration.new
 
     @brand
-    if (params.has_key?(:brand_id))
+    if (params.has_key?(:brand_id) && !params[:brand_id].empty?)
       @brand = Brand.find(params[:brand_id])
     else
       @action_registration.errors.add(:brand_id, "wasn't filled in")
     end
 
     @model
-    if (params.has_key?(:model_id))
+    if (params.has_key?(:model_id) && !params[:model_id].empty?)
       @model = @brand.models.find(params[:model_id])
     else
       @action_registration.errors.add(:model_id, "wasn't filled in")
     end
 
     @body
-    if (params.has_key?(:body_id))
+    if (params.has_key?(:body_id) && !params[:body_id].empty?)
       @body = Body.find(params[:body_id])
     else
       @action_registration.errors.add(:body_id, "wasn't filled in")
     end
 
     @year
-    if (params.has_key?(:year))
+    if (params.has_key?(:year) && !params[:year].empty?)
       @year = params[:year]
     else
       @action_registration.errors.add(:year, "wasn't filled in")
@@ -73,19 +73,20 @@ class ActionRegistrationsController < ApplicationController
     @customer = Customer.new({:name => "some customer name"})
 
     @phone
-    if (params.has_key?(:phone))
+    if (params.has_key?(:phone) && !params[:phone].empty?)
       @phone = Phone.new({:value => params[:phone]})
       @customer.contacts << @phone
     end
 
     @email
-    if (params.has_key?(:email))
+    if (params.has_key?(:email) && !params[:email].empty?)
       @email = Email.new({:value => params[:email]})
       @customer.contacts << @email
     end
 
     if (!@phone && !@email)
-      @action_registration.errors.add("email or phone shuld be filled in")
+      @action_registration.errors.add(:email, "email or phone shuld be filled in")
+      @action_registration.errors.add(:phone, "email or phone shuld be filled in")
     end
 
     if (@action_registration.errors.empty?)
