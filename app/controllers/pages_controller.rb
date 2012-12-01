@@ -18,4 +18,7 @@ class PagesController < ApplicationController
     @title="Projects"
     @projects = Project.all
   end
+  def logon
+    @title="Logon"
+  end
 end

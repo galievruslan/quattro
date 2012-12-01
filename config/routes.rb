@@ -1,4 +1,6 @@
 Quattro::Application.routes.draw do
+  devise_for :users
+
   resources :services
 
   resources :companies
@@ -19,7 +21,7 @@ Quattro::Application.routes.draw do
   match '/contact', :to => 'pages#contact'
   #match '/projects', :to => 'pages#projects'
   match '/about', :to => 'pages#about'
-  
+  match '/admin', :to => 'pages#admin'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
