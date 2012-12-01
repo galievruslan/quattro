@@ -89,14 +89,22 @@ class ActionRegistrationsController < ApplicationController
       @action_registration.errors.add(:phone, "email or phone shuld be filled in")
     end
 
+    saved = false
     if (@action_registration.errors.empty?)
-      @customer.save
       @vehicle = Vehicle.create({:model => @model, :body => @body, :year => @year})      
-      @action_registration = ActionRegistration.new({:vehicle => @vehicle, :customer => @customer})
+
+      ActionRegistration.transaction do
+        @customer.save
+        @vehicle.save
+        @action_registration = ActionRegistration.new({:vehicle => @vehicle, :customer => @customer})
+        @action_registration.save
+
+        saved = true
+      end
     end
 
     respond_to do |format|
-      if @action_registration.save
+      if saved
         format.html { redirect_to @action_registration, notice: 'Action registration was successfully created.' }
         format.json { render json: @action_registration, status: :created, location: @action_registration }
       else

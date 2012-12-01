@@ -63,16 +63,13 @@
     <% end %>
   </div>
   <div class="field">
-    <%= label_tag 'year', 'Year' %>
-    <%= number_field_tag 'year', @year.nil? ? nil: @year, :in => 1980...2014%>
+    <%= number_field_tag 'year', @year.nil? ? nil: @year, :in => 1980...2014, :class => 'textBox', :title => 'Year' %>
   </div>
   <div class="field">
-    <%= label_tag 'email', 'EMail' %>
-    <%= email_field_tag 'email', @email.nil? ? nil: @email.value %>
+    <%= email_field_tag 'email', @email.nil? ? nil: @email.value, :class => 'textBox', :title => 'EMail' %>
   </div>
   <div class="field">
-    <%= label_tag 'phone', 'Phone' %>
-    <%= telephone_field_tag 'phone', @phone.nil? ? nil: @phone.value %>
+    <%= telephone_field_tag 'phone', @phone.nil? ? nil: @phone.value, :class => 'textBox', :title => 'Phone' %>
   </div>
   <%= submit_tag "Register!" %>
 <% end %>

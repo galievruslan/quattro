@@ -138,3 +138,25 @@ div#projectPhotos {
   width:55%;
   text-align:center;
 }
+
+.field {
+  text-align: left;
+}
+/* Text boxes */
+.textBox {
+  position: relative;
+  width: 200px;
+  margin: 2px;
+  padding: 10px;
+
+  /* Styles */
+  background: #fff;
+  border-radius: 7px;
+  border: 1px solid rgba(0,0,0,0.15);
+  box-shadow: 0 1px 1px rgba(50,50,50,0.1);
+  outline: none;
+
+  /* Font settings */
+  font-weight: bold;
+  color: #8AA8BD;
+}
