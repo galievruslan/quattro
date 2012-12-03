@@ -19,9 +19,11 @@ Quattro::Application.routes.draw do
   resources :project_photo
   root :to => 'pages#home'
   match '/contact', :to => 'pages#contact'
-  #match '/projects', :to => 'pages#projects'
   match '/about', :to => 'pages#about'
-  match '/admin', :to => 'pages#admin'
+  match '/admin', :to => 'administration#index'
+
+  namespace :administration do resources :projects end
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
