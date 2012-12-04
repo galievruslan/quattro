@@ -22,7 +22,10 @@ Quattro::Application.routes.draw do
   match '/about', :to => 'pages#about'
   match '/admin', :to => 'administration#index'
 
-  namespace :administration do resources :projects end
+  namespace :administration do 
+    resources :projects 
+    resources :companies
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

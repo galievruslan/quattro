@@ -9,7 +9,7 @@
       <div id="menu">
         <ul>
           <li>
-            <%= link_to "Company", Company.first %>
+            <%= link_to "Company", :url => administration_company_path(Company.first) %>
           </li>
           <li>
             <%= link_to "Projects", :controller => "administration/projects" %>
