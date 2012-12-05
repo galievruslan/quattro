@@ -2,7 +2,12 @@
 <html>
 <head>
   <title><%= title %></title>  
+  <h3>JAdminKo</h3>
   <%= csrf_meta_tag %>
+  <%= stylesheet_link_tag 'administration', :media => 'screen' %>
+  <%= yield :stylesheets %>
+  <%= javascript_include_tag 'administration' %>
+  <%= yield :javascripts %>
 </head>
  <body>
     <div id="container">
@@ -12,14 +17,19 @@
             <%= link_to "Company", :url => administration_company_path(Company.first) %>
           </li>
           <li>
-            <%= link_to "Projects", :controller => "administration/projects" %>
+            <%= link_to "Projects", :url =>  administration_projects_path %>
           </li>
         </ul>
       </div>  
-      <div id="container">
-        <%= yield %>      
-        <%= debug(params) if Rails.env.development? %>
+      <div id="view">
+        <%= yield %>              
       </div>  
     </div>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+<p>- debug ----------------------------------------------------</p>    
+<%= debug(params) if Rails.env.development? %>
   </body>
 </html>

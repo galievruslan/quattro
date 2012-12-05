@@ -1,0 +1,13 @@
+ #container {
+ 	width: 100%;
+ }
+
+ #menu {
+ 	width: 20%;
+ 	float: left;
+ }
+
+ #view {
+ 	width: 80%
+ 	float: left;
+ }

@@ -20,7 +20,7 @@ Quattro::Application.routes.draw do
   root :to => 'pages#home'
   match '/contact', :to => 'pages#contact'
   match '/about', :to => 'pages#about'
-  match '/admin', :to => 'administration#index'
+  match '/admin', :to => 'administration/companies#show#1'
 
   namespace :administration do 
     resources :projects 
