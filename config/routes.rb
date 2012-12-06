@@ -25,6 +25,12 @@ Quattro::Application.routes.draw do
   namespace :administration do 
     resources :projects 
     resources :companies
+    resources :action_registrations
+    resources :bodies
+    resources :brands
+    resources :customers
+    resources :models
+    resources :services
   end
 
   # The priority is based upon order of creation:

@@ -1,0 +1,2 @@
+module Administration::BrandsHelper
+end

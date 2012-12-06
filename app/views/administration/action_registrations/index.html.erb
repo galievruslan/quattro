@@ -1,0 +1,25 @@
+<h1>Listing action_registrations</h1>
+
+<table>
+  <tr>
+    <th>Customer</th>
+    <th>Vehicle</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @action_registrations.each do |action_registration| %>
+  <tr>
+    <td><%= action_registration.customer_id %></td>
+    <td><%= action_registration.vehicle_id %></td>
+    <td><%= link_to 'Show', action_registration %></td>
+    <td><%= link_to 'Edit', edit_action_registration_path(action_registration) %></td>
+    <td><%= link_to 'Destroy', action_registration, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Action registration', new_action_registration_path %>

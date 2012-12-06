@@ -6,7 +6,7 @@
 <% @projects.each do |project| %>
   <li>
     <div class="details"><%= project.description %>
-      <%= link_to 'Детали', project, class: 'more' %>
+      <%= link_to 'Детали', :controller => administration_projects_path, :action => 'show', :id => project.id, class: 'more' %>
     </div>
     <%= link_to image_tag(project.project_photos.find_by_default(true).image.thumb('200x200#').url) , project, class: 'more' %>
   </li>

@@ -38,6 +38,6 @@
   </div>
 <% end %>
 
-<%= link_to 'Show', @project %> |
-<%= link_to 'Back', projects_path %>
+<%= link_to 'Show', :controller => administration_projects_path, :action => 'show', :id => @project.id %> |
+<%= link_to 'Back', administration_projects_path %>
 </section>

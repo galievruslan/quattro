@@ -6,5 +6,5 @@
 </p>
 
 
-<%= link_to 'Edit', edit_administration_company_path(@company) %> |
-<%= link_to 'Back', administration_companies_path %>
+<%= link_to 'Edit', :controller => administration_companies_path, :action => 'edit', :id => @company.id %> |
+<%= link_to 'Back', :controller => administration_companies_path, :action => 'show', :id => @company.id %>

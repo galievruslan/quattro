@@ -12,12 +12,31 @@
  <body>
     <div id="container">
       <div id="menu">
-        <ul>
+        <ul class='navlist'>
           <li>
-            <%= link_to "Company", :url => administration_company_path(Company.first) %>
+            <%= link_to "Company", :controller => administration_companies_path, :action => 'show', :id => '1' %>
           </li>
           <li>
-            <%= link_to "Projects", :url =>  administration_projects_path %>
+            <%= link_to "Projects", :controller =>  administration_projects_path %>
+          </li>
+          <li>
+            <%= link_to "Action Registrations", :controller =>  administration_action_registrations_path %>
+          </li>
+          <li>
+            <%= link_to "Customers", :controller =>  administration_customers_path %>
+          </li>
+          <li>
+            <ul class='navlist'>
+              <li>
+                <%= link_to "Brands", :controller =>  administration_brands_path %>
+              </li>
+              <li>
+                <%= link_to "Bodies", :controller =>  administration_bodies_path %>
+              </li>
+              <li>
+                <%= link_to "Services", :controller =>  administration_services_path %>
+              </li>
+            </ul>
           </li>
         </ul>
       </div>  
