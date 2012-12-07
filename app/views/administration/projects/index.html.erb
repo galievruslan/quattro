@@ -1,14 +1,31 @@
-<% content_for :stylesheets do %>
-<%= stylesheet_link_tag 'css3_3d', :media => 'screen' %>
-<%end%>
-<section id="main" class="round"><h1>Список проектов</h1>
-<ul id="grid" class="group">    
+<h1>Listing projects</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Finish Date</th>
+    <th>Rating</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
 <% @projects.each do |project| %>
-  <li>
-    <div class="details"><%= project.description %>
-      <%= link_to 'Детали', :controller => administration_projects_path, :action => 'show', :id => project.id, class: 'more' %>
-    </div>
-    <%= link_to image_tag(project.project_photos.find_by_default(true).image.thumb('200x200#').url) , project, class: 'more' %>
-  </li>
+  <tr>
+    <td><%= project.name %></td>
+    <td><%= project.description %></td>
+    <td><%= project.finish_date %></td>
+    <td><%= project.rating %></td>
+    <td><%= link_to 'Show', :controller => administration_projects_path, :action => 'show', :id => project.id %></td>
+    <td><%= link_to 'Edit', :controller => administration_projects_path, :action => 'edit', :id => project.id %></td>
+    <td><%= link_to 'Destroy',  
+      { :controller => administration_projects_path, :action => 'destroy', :id => project.id },
+      { :confirm => 'Are you sure?', :method => :delete, :remote => true} %></td>
+  </tr>
 <% end %>
-</section>
+</table>
+
+<br />
+
+<%= link_to 'New Project', :controller => administration_projects_path, :action => 'new' %>

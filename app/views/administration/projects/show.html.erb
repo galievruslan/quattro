@@ -1,41 +1,38 @@
-<% content_for :stylesheets do %>
-<%= stylesheet_link_tag 'nivo-slider' %>
-<%end%>
-<% content_for :javascripts do %>
-<%= javascript_include_tag 'nanoSlider/jquery.nivo.slider' %>
-<%end%>
-<section id="main" class="round">
-<%@project.rating=@project.rating+1%>
-<%@project.save%>
-<div id="projectInfo">
+<p id="notice"><%= notice %></p>
 <p>
-  <b>Имя проекта:</b>
-  <%= @project.name %><br>
-  <b>Рейтинга проекта:</b>
-  <%= @project.rating %><br>  
-  <b>Дата проекта:</b>
-  <%= @project.finish_date %><br>
-  <b>Оказанные услуги:</b>
-  <% @project.services.each do |service|%>
-  <%= link_to service.name, :controller => administration_services_path, :action => 'show', :id => service.id %>,
-  <%end%><br>
-  <b>Автомобиль:</b>
-  <% @project.vehicles.each do |vehicle|%>
-  <%=vehicle.model.brand.name%>,<%=vehicle.model.name%>,<%=vehicle.body.name%>,<%=vehicle.year%><br>
-  <%end%>
-  <b>Описание:</b>
+  <b>Name</b>
+  <%= @project.name %>
+</p>
+<p>  
+  <b>Description</b>
   <%= @project.description %><br>
 </p>
-</div>
-<div id="projectPhotos">
-<div id="wrap">                 
-                     <section class="slider-wrapper">
-                        <div id="slider" class="nivoSlider">
-                           <% @project.project_photos.each do |photo|%> 
-                           <%= image_tag photo.image.thumb('450x300#').url if photo.image %>
-                           <%end%>
-                        </div>
-                     </section>
-      </div>
-</div>
-</section>
+<p>
+  <b>Finish Date</b>
+  <%= @project.finish_date %>
+</p>
+<p>
+  <b>Rating</b>
+  <%= @project.rating %>
+</p>
+<p>
+  <b>Vehicles</b>
+  <% @project.vehicles.each do |vehicle|%>
+    <%=vehicle.model.brand.name%>,<%=vehicle.model.name%>,<%=vehicle.body.name%>,<%=vehicle.year%><br>
+  <%end%>
+</p>
+<p>
+  <b>Services</b>
+  <% @project.services.each do |service|%>
+  <%= link_to service.name, :controller => administration_services_path, :action => 'show', :id => service.id %>,
+  <%end%>
+</p>
+<p>
+  <b>Photos</b></br>
+  <% @project.project_photos.each do |photo|%> 
+    <%= image_tag photo.image.thumb('200x150#').url if photo.image %></br>
+  <%end%>
+</p>
+
+<%= link_to 'Edit', :controller => administration_projects_path, :action => 'edit', :id => @project.id %> |
+<%= link_to 'Back', administration_projects_path %>
