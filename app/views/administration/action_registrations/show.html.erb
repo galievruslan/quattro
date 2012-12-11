@@ -10,6 +10,5 @@
   <%= @action_registration.vehicle_id %>
 </p>
 
-
-<%= link_to 'Edit', edit_action_registration_path(@action_registration) %> |
-<%= link_to 'Back', action_registrations_path %>
+<%= link_to 'Edit', :controller => administration_action_registrations_path, :action => 'edit', :id => @action_registration.id %> |
+<%= link_to 'Back', administration_action_registrations_path %>

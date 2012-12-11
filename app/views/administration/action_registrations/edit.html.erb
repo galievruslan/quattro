@@ -2,5 +2,5 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @action_registration %> |
-<%= link_to 'Back', action_registrations_path %>
+<%= link_to 'Show', :controller => administration_action_registrations_path, :action => 'show', :id => @action_registration.id  %> |
+<%= link_to 'Back', administration_action_registrations_path %>

@@ -11,13 +11,14 @@
 <% @customers.each do |customer| %>
   <tr>
     <td><%= customer.name %></td>
-    <td><%= link_to 'Show', customer %></td>
-    <td><%= link_to 'Edit', edit_customer_path(customer) %></td>
-    <td><%= link_to 'Destroy', customer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to 'Show', :controller => administration_customers_path, :action => 'show', :id => customer.id %></td>
+    <td><%= link_to 'Edit', :controller => administration_customers_path, :action => 'edit', :id => customer.id %></td>
+    <td><%= link_to 'Destroy',  
+      { :controller => administration_customers_path, :action => 'destroy', :id => customer.id },
+      { :confirm => 'Are you sure?', :method => :delete, :remote => true} %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
-
-<%= link_to 'New Customer', new_customer_path %>
+<%= link_to 'New Customer', :controller => administration_customers_path, :action => 'new' %>

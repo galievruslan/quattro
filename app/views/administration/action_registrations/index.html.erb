@@ -13,13 +13,15 @@
   <tr>
     <td><%= action_registration.customer_id %></td>
     <td><%= action_registration.vehicle_id %></td>
-    <td><%= link_to 'Show', action_registration %></td>
-    <td><%= link_to 'Edit', edit_action_registration_path(action_registration) %></td>
-    <td><%= link_to 'Destroy', action_registration, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to 'Show', :controller => administration_action_registrations_path, :action => 'show', :id => action_registration.id  %></td>
+    <td><%= link_to 'Edit', :controller => administration_action_registrations_path, :action => 'edit', :id => action_registration.id %></td>
+    <td><%= link_to 'Destroy', 
+      { :controller => administration_action_registrations_path, :action => 'destroy', :id => action_registration.id },
+      { :confirm => 'Are you sure?', :method => :delete, :remote => true} %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Action registration', new_action_registration_path %>
+<%= link_to 'New action registration', :controller => administration_action_registrations_path, :action => 'new' %>
