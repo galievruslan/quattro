@@ -1,13 +1,13 @@
 <h1>Listing brands</h1>
 
-<table>
+<table class="table table-striped table-hover">
+<thead>
   <tr>
     <th>Name</th>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th colspan="3">Actions</th>
   </tr>
-
+</thead>
+<tbody>
 <% @brands.each do |brand| %>
   <tr>
     <td><%= brand.name %></td>
@@ -16,8 +16,9 @@
     <td><%= link_to 'Destroy', administration_brand_path(brand), method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
+</tbody>
 </table>
 
 <br />
 
-<%= link_to 'New Brand', new_administration_brand_path %>
+<%= link_to 'New Brand', new_administration_brand_path, :class =>'btn' %>

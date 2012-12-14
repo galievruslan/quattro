@@ -1,10 +1,10 @@
-<% content_for :stylesheets do %>
+  <% content_for :stylesheets do %>
   <%= stylesheet_link_tag 'action_registrations' %>
 <% end %>
 <% content_for :javascripts do %>
   <%= javascript_include_tag 'action_registrations' %>
 <% end %>
-<%= form_tag('/action_registrations') do %>
+<%= form_tag('/administration/action_registrations') do %>
 
   <% if @action_registration.errors.any? %>
     <div id="error_explanation">
@@ -17,7 +17,8 @@
     </div>
   <% end %>
 
-  <div class="field">
+  
+ <div class="field">
     <%= hidden_field_tag 'brand_id', @brand.nil? ? nil: @brand.id %>
     <div id="brands" class="wrapper-dropdown-3" tabindex="1">      
       <span><%= @brand.nil? ? 'Brands' : @brand.name %></span>
@@ -28,7 +29,8 @@
         <% end %>
       </ul>
     </div>
-  </div>
+  </div>  
+  
   <div class="field">
     <%= hidden_field_tag 'model_id', @model.nil? ? nil: @model.id  %>
     <% if(!@brand) %>
@@ -45,6 +47,7 @@
       </div>
     <% end %>
   </div>
+  
   <div class="field">
     <%= hidden_field_tag 'body_id', @body.nil? ? nil: @body.id%>
     <% if(!@model) %>
@@ -61,7 +64,8 @@
         </ul>
       </div>
     <% end %>
-  </div>
+  </div>  
+  
   <div class="field">
     <%= number_field_tag 'year', @year.nil? ? nil: @year, :in => 1980...2014, :class => 'textBox', :title => 'Year' %>
   </div>
@@ -71,7 +75,7 @@
   <div class="field">
     <%= telephone_field_tag 'phone', @phone.nil? ? nil: @phone.value, :class => 'textBox', :title => 'Phone' %>
   </div>
-  <%= submit_tag "Register!" %>
+  <%= submit_tag 'Register', :class =>'btn'%>
 <% end %>
 <div id="Templates">
   <div id="modelsListTemplate" class="wrapper-dropdown-3" tabindex="1">      

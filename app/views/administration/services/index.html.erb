@@ -1,15 +1,15 @@
 <section id="main" class="round">
 <h1>Список услуг</h1>
 
-<table>
+<table class="table table-striped table-hover">
+<thead>
   <tr>
     <th>Наименование</th>
-    <th>Описание</th>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th>Описание</th>    
+    <th colspan="3">Операции</th>
   </tr>
-
+</thead>
+<tbody>
 <% @services.each do |service| %>
   <tr>
     <td><%= service.name %></td>
@@ -19,9 +19,10 @@
     <td><%= link_to 'Destroy', administration_service_path(service), method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
+</tbody>
 </table>
 
 <br />
 
-<%= link_to 'New Services', new_administration_service_path %>
+<%= link_to 'New Services', new_administration_service_path, :class =>'btn' %>
 </section>

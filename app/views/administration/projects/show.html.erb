@@ -27,12 +27,23 @@
   <%= link_to service.name, :controller => administration_services_path, :action => 'show', :id => service.id %>,
   <%end%>
 </p>
-<p>
-  <b>Photos</b></br>
-  <% @project.project_photos.each do |photo|%> 
-    <%= image_tag photo.image.thumb('200x150#').url if photo.image %></br>
+<b>Photos</b></br>
+<ul class="thumbnails">   
+  <% @project.project_photos.each do |photo|%>
+    <% if(photo.default) %>
+        <li class="thumbnail" style="background-color: #08C">
+           <%= image_tag photo.image.thumb('200x150#').url if photo.image %>
+                 
+        </li>
+    <%else%>
+      <li class="thumbnail">
+          <%= image_tag photo.image.thumb('200x150#').url if photo.image %>
+        
+      </li>
+    <%end%>
   <%end%>
-</p>
+</ul>
+
 
 <%= link_to 'Edit', :controller => administration_projects_path, :action => 'edit', :id => @project.id %> |
 <%= link_to 'Back', administration_projects_path %>

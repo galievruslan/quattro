@@ -1,14 +1,13 @@
 <h1>Listing action_registrations</h1>
-
-<table>
+<table class="table table-striped table-hover">
+<thead>
   <tr>
     <th>Customer</th>
     <th>Vehicle</th>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th colspan="3">Actions</th>
   </tr>
-
+</thead>
+<tbody>
 <% @action_registrations.each do |action_registration| %>
   <tr>
     <td><%= action_registration.customer_id %></td>
@@ -20,8 +19,9 @@
       { :confirm => 'Are you sure?', :method => :delete, :remote => true} %></td>
   </tr>
 <% end %>
+</tbody>
 </table>
 
 <br />
 
-<%= link_to 'New action registration', :controller => administration_action_registrations_path, :action => 'new' %>
+<%= link_to 'New action registration', new_administration_action_registration_path, :class =>'btn' %>
