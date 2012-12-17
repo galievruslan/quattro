@@ -18,6 +18,7 @@ Quattro::Application.routes.draw do
   
   namespace :administration do 
     resources :projects 
+    resources :project_photos 
     resources :companies
     resources :action_registrations
     resources :bodies
