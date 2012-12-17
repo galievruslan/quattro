@@ -1,11 +1,12 @@
 class PagesController < ApplicationController
   def home
     @title="Home"
-    @projects = Project.find(:all) 
+    @projects = Project.find(:all)     
+    @action_registration = ActionRegistration.new 
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @projects }
-    end 
+    end    
   end
   def contact
     @title="Contact"

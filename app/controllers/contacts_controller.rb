@@ -1,12 +1,14 @@
-class ContactController < ApplicationController
+class ContactsController < ApplicationController
   # GET /contacts
   # GET /contacts.json
-  def index
-    @contacts = Contact.find(:all)
-    #respond_to do |format|
-    #  format.html # index.html.erb
-    #  format.json { render json: @contacts }
-    #end
+  def index  
+    @title = 'Contacts'
+    @company = Company.first
+    @contacts = @company.contacts.find(:all)
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @contacts }
+    end
   end
 
   # GET /contacts/1
@@ -31,11 +33,6 @@ class ContactController < ApplicationController
     end
   end
 
-  # GET /contacts/1/edit
-  def edit
-    @Contact = Contact.find(params[:id])
-  end
-
   # POST /contacts
   # POST /contacts.json
   def create
@@ -49,34 +46,6 @@ class ContactController < ApplicationController
         format.html { render action: "new" }
         format.json { render json: @Contact.errors, status: :unprocessable_entity }
       end
-    end
-  end
-
-  # PUT /contacts/1
-  # PUT /contacts/1.json
-  def update
-    @Contact = Contact.find(params[:id])
-
-    respond_to do |format|
-      if @Contact.update_attributes(params[:Contact])
-        format.html { redirect_to @Contact, notice: 'Contact was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @Contact.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /contacts/1
-  # DELETE /contacts/1.json
-  def destroy
-    @Contact = Contact.find(params[:id])
-    @Contact.destroy
-
-    respond_to do |format|
-      format.html { redirect_to contacts_url }
-      format.json { head :no_content }
     end
   end
 end
