@@ -1,15 +1,8 @@
 Quattro::Application.routes.draw do
-  devise_for :users
-
-  resources :services
-
+  devise_for :users 
+  resources :contacts
   resources :companies
-
-  resources :project_photos
-
-  get "home/index"
   resources :customers
-  resources :action_registrations
   resources :vehicles
   resources :brands
   resources :models
@@ -17,11 +10,12 @@ Quattro::Application.routes.draw do
   resources :projects
   resources :services
   resources :project_photo
+  resources :action_registrations
   root :to => 'pages#home'
-  match '/contact', :to => 'pages#contact'
-  match '/about', :to => 'pages#about'
-  match '/admin', :to => 'administration/companies#show#1'
-
+  
+  match '/about', :to => 'companies#show'
+  match '/admin', :to => 'administration/companies#show'
+  
   namespace :administration do 
     resources :projects 
     resources :companies
