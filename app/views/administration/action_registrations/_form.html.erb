@@ -1,8 +1,8 @@
-  <% content_for :stylesheets do %>
-  <%= stylesheet_link_tag 'action_registrations' %>
+<% content_for :stylesheets do %>
+  <%= stylesheet_link_tag 'administration/action_registrations' %>
 <% end %>
 <% content_for :javascripts do %>
-  <%= javascript_include_tag 'action_registrations' %>
+  <%= javascript_include_tag 'administration/action_registrations' %>
 <% end %>
 <%= form_tag('/administration/action_registrations') do %>
 
@@ -20,12 +20,15 @@
   
  <div class="field">
     <%= hidden_field_tag 'brand_id', @brand.nil? ? nil: @brand.id %>
-    <div id="brands" class="wrapper-dropdown-3" tabindex="1">      
-      <span><%= @brand.nil? ? 'Brands' : @brand.name %></span>
-      <ul class="dropdown">
+    <div id="brands" class="btn-group">
+      <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+        <span id="brands_label"><%= @brand.nil? ? 'Brands' : @brand.name %></span>
+        <span class="caret"></span>
+      </a>
+      <ul class="dropdown-menu">
         <% @brands = Brand.all %>
         <% @brands.each do |brand| %>
-          <li value=<%= brand.id %>><a href="#"><i class="icon-large"></i><%= brand.name %></a></li>          
+          <li value=<%= brand.id %>><a href="#"><%= brand.name %></a></li>          
         <% end %>
       </ul>
     </div>
@@ -78,15 +81,21 @@
   <%= submit_tag 'Register', :class =>'btn'%>
 <% end %>
 <div id="Templates">
-  <div id="modelsListTemplate" class="wrapper-dropdown-3" tabindex="1">      
-    <span>Models</span>      
-    <ul class="dropdown">
+  <div id="modelsListTemplate"  class="btn-group">      
+    <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+        <span id="models_label">Models</span>
+        <span class="caret"></span>
+    </a> 
+    <ul class="dropdown-menu">
     </ul>
   </div>
-  <div id="bodiesListTemplate" class="wrapper-dropdown-3" tabindex="1">      
-    <span>Bodies</span>      
-    <ul class="dropdown">
+  <div id="bodiesListTemplate"  class="btn-group">      
+    <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+        <span id="bodies_label">Bodies</span>
+        <span class="caret"></span>
+    </a>  
+    <ul class="dropdown-menu">
     </ul>
   </div>
-  <li id="listItemTemplate"><a href="#"><i class="icon-large"></i></a></li>
+  <li id="listItemTemplate"><a href="#"></a></li>
 </div>

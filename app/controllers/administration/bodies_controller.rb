@@ -44,7 +44,7 @@ class Administration::BodiesController < AdministrationController
 
     respond_to do |format|
       if @body.save
-        format.html { redirect_to @body, notice: 'Body was successfully created.' }
+        format.html { redirect_to  administration_body_path(@body), notice: 'Body was successfully created.' }
         format.json { render json: @body, status: :created, location: @body }
       else
         format.html { render action: "new" }
