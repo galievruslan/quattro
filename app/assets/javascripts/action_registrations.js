@@ -1,4 +1,4 @@
-function brand_selected(brand_id){
+function brand_selected(brand_id, brand_name){
 	$.ajax({
         type: 'GET',
         url: '/models',
@@ -9,13 +9,15 @@ function brand_selected(brand_id){
 		dataType: 'json'
 	});
 
-	$('#bodies').remove();
 	$('#brand_id').val(brand_id);
+	$('#brands_label').text(brand_name);
+
+	$('#bodies').remove();	
 	$('#model_id').val(null);
 	$('#body_id').val(null);
 }
 
-function model_selected(model_id){
+function model_selected(model_id, model_name){
 	$.ajax({
         type: 'GET',
         url: '/bodies',
@@ -27,11 +29,13 @@ function model_selected(model_id){
 	});
 
 	$('#model_id').val(model_id);
+	$('#models_label').text(model_name);
 	$('#body_id').val(null);
 }
 
-function body_selected(body_id){
+function body_selected(body_id, body_name){
 	$('#body_id').val(body_id);
+	$('#bodies_label').text(body_name);
 }
 
 function create_list(data, placeholder, template, newId, clickCallback) {
@@ -43,70 +47,36 @@ function create_list(data, placeholder, template, newId, clickCallback) {
 		listItemTemplate.removeAttr('id');
 		listItemTemplate.attr('value', this.id);		
 		listItemTemplate.find('a').append(this.name);
-		listTemplate.find('.dropdown').append(listItemTemplate);
+		listTemplate.find('.dropdown-menu').append(listItemTemplate);
 	});
-
+	
+	AddEventListeners($(listTemplate));
 	$(placeholder).html($(listTemplate));
-	var dd = new DropDown( $('#' + newId), clickCallback );
-}
-
-function DropDown(el, clickCallback) {
-	this.dd = el;
-	this.placeholder = this.dd.children('span');
-	this.opts = this.dd.find('ul.dropdown > li');
-	this.val = '';
-	this.index = -1;
-	this.initEvents(clickCallback);
-}
-
-DropDown.prototype = {
-	initEvents : function(clickCallback) {
-		var obj = this;
-
-		obj.dd.bind('click', function(event){
-			$(this).toggleClass('active');
-			return false;
-		});
-
-		obj.opts.bind('click',function(){
-			var opt = $(this);
-			obj.val = opt.text();						
-			obj.index = opt.index();
-			obj.placeholder.text(obj.val);
-			clickCallback(opt.attr("value"));
-		});
-	},
-	getValue : function() {
-		return this.val;
-	},
-	getIndex : function() {
-		return this.index;
-	}
 }
 
 $(function() {
-	new DropDown( $('#brands'), brand_selected );
-	if ($('#models')){
-		new DropDown( $('#models'), model_selected );
-	}
-	if ($('#bodies')) {
-		new DropDown( $('#bodies'), body_selected );
-	}
-
-	$(document).click(function() {
-		// all dropdowns
-		$('.wrapper-dropdown-3').removeClass('active');
-	});
-
-	$(document).ready(function(){
-		$('.textBox').each(function(){
-			if ($(this).val()=="") { $(this).val($(this).attr("title")); }
-		})
-		
-		$('.textBox').focus(function() {
-  			if ($(this).val()==$(this).attr("title")) { $(this).val(""); }
-		}).blur(function() {
-  			if ($(this).val()=="") { $(this).val($(this).attr("title")); }
-		});
-	});
+	$(document).ready(AddEventListeners($('.dropdown-menu')));
 });
+
+function AddEventListeners(menu){
+	$(menu).on('click', 'li', function(event) {
+			var listId = $(this).parent().parent().attr('id');
+			var listItemValue = $(this).val();
+			var listItemText = $(this).find('a').text();
+
+			switch(listId) {
+				case 'brands': {
+					brand_selected(listItemValue, listItemText);
+					break;
+				}
+				case 'models' : {
+					model_selected(listItemValue, listItemText);
+					break;
+				}
+				case 'bodies' : {
+					body_selected(listItemValue, listItemText);
+					break;
+				}
+			}
+		});
+}

@@ -16,17 +16,35 @@
   <%= @project.rating %>
 </p>
 <p>
-  <b>Vehicles</b>
-  <% @project.vehicles.each do |vehicle|%>
-    <%=vehicle.model.brand.name%>,<%=vehicle.model.name%>,<%=vehicle.body.name%>,<%=vehicle.year%><br>
-  <%end%>
-</p>
 <p>
   <b>Services</b>
   <% @project.services.each do |service|%>
   <%= link_to service.name, :controller => administration_services_path, :action => 'show', :id => service.id %>,
   <%end%>
 </p>
+<b>Vehicles</b><br>
+  <table class="table table-striped table-hover">
+    <thead>
+      <tr>
+          <th>Brand</th>
+          <th>Model</th>
+          <th>Body</th>
+          <th>Year</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @project.vehicles.each do |vehicle|%>  
+      <tr>
+        <td><%=vehicle.model.brand.name%></td>
+        <td><%=vehicle.model.name%></td>
+        <td><%=vehicle.body.name%></td>
+        <td><%=vehicle.year%></td>
+      </tr>
+      <%end%>
+    </tbody>
+  </table>
+</p>
+
 <b>Photos</b></br>
 <ul class="thumbnails">   
   <% @project.project_photos.each do |photo|%>

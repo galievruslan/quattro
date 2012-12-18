@@ -44,7 +44,7 @@ class Administration::BrandsController < AdministrationController
 
     respond_to do |format|
       if @brand.save
-        format.html { redirect_to @brand, notice: 'Brand was successfully created.' }
+        format.html { redirect_to administration_brand_path(@brand), notice: 'Brand was successfully created.' }
         format.json { render json: @brand, status: :created, location: @brand }
       else
         format.html { render action: "new" }
@@ -60,7 +60,7 @@ class Administration::BrandsController < AdministrationController
 
     respond_to do |format|
       if @brand.update_attributes(params[:brand])
-        format.html { redirect_to @brand, notice: 'Brand was successfully updated.' }
+        format.html { redirect_to administration_brand_path(@brand), notice: 'Brand was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

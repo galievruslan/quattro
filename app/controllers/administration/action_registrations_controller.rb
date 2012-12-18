@@ -70,8 +70,13 @@ class Administration::ActionRegistrationsController < AdministrationController
       @action_registration.errors.add(:year, "wasn't filled in")
     end    
 
-    @customer = Customer.new({:name => "some customer name"})
-
+    @customer = Customer.new
+    
+    @name
+    if (params.has_key?(:name) && !params[:name].empty?)
+      @customer.name = params[:name]
+    end
+    
     @phone
     if (params.has_key?(:phone) && !params[:phone].empty?)
       @phone = Phone.new({:value => params[:phone]})
@@ -84,9 +89,10 @@ class Administration::ActionRegistrationsController < AdministrationController
       @customer.contacts << @email
     end
 
-    if (!@phone && !@email)
-      @action_registration.errors.add(:email, "email or phone shuld be filled in")
-      @action_registration.errors.add(:phone, "email or phone shuld be filled in")
+    if (!@phone && !@email && !@name)
+      @action_registration.errors.add(:email, "email or phone or name shuld be filled in")
+      @action_registration.errors.add(:phone, "email or phone or name shuld be filled in")      
+      @action_registration.errors.add(:name, "email or phone or name shuld be filled in")
     end
 
     saved = false

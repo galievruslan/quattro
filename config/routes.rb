@@ -26,6 +26,7 @@ Quattro::Application.routes.draw do
     resources :customers
     resources :models
     resources :services
+    resources :contacts
   end
 
   # The priority is based upon order of creation:

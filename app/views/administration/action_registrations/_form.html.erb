@@ -4,7 +4,7 @@
 <% content_for :javascripts do %>
   <%= javascript_include_tag 'administration/action_registrations' %>
 <% end %>
-<%= form_tag('/administration/action_registrations') do %>
+<%= form_tag('/administration/action_registrations' , :class => 'form-horizontal') do %>
 
   <% if @action_registration.errors.any? %>
     <div id="error_explanation">
@@ -17,11 +17,10 @@
     </div>
   <% end %>
 
-  
- <div class="field">
+  <div class="control-group">
     <%= hidden_field_tag 'brand_id', @brand.nil? ? nil: @brand.id %>
     <div id="brands" class="btn-group">
-      <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+      <a class="btn dropdown-toggle custom-button" data-toggle="dropdown" href="#">
         <span id="brands_label"><%= @brand.nil? ? 'Brands' : @brand.name %></span>
         <span class="caret"></span>
       </a>
@@ -33,64 +32,73 @@
       </ul>
     </div>
   </div>  
-  
-  <div class="field">
+  <div class="control-group">   
     <%= hidden_field_tag 'model_id', @model.nil? ? nil: @model.id  %>
     <% if(!@brand) %>
-      <div id="modelsPlaceHolder" class="field">
-      </div>
+      <div id="modelsPlaceHolder">
+      </div>  
     <% else %>
-      <div id="models" class="wrapper-dropdown-3" tabindex="1">      
-        <span><%= @model.nil? ? 'Models' : @model.name %></span>
-        <ul class="dropdown">
+      <div id="models" class="btn-group">
+        <a class="btn dropdown-toggle custom-button" data-toggle="dropdown" href="#">      
+          <span id="models_label"><%= @model.nil? ? 'Models' : @model.name %></span>
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
           <% @brand.models.each do |model| %>
-            <li value=<%= model.id %>><a href="#"><i class="icon-large"></i><%= model.name %></a></li>
+            <li value=<%= model.id %>><a href="#"><%= model.name %></a></li>
           <% end %>
         </ul>
       </div>
-    <% end %>
+    <% end %>   
   </div>
-  
-  <div class="field">
+  <div class="control-group">
     <%= hidden_field_tag 'body_id', @body.nil? ? nil: @body.id%>
     <% if(!@model) %>
-      <div id="bodiesPlaceHolder" class="field">
+      <div id="bodiesPlaceHolder">
       </div>
     <% else %>
-      <div id="bodies" class="wrapper-dropdown-3" tabindex="1">      
-        <span><%= @body.nil? ? 'Bodies' : @body.name %></span>
-        <ul class="dropdown">
+      <div id="bodies" class="btn-group">
+        <a class="btn dropdown-toggle custom-button" data-toggle="dropdown" href="#">       
+        <span id="bodies_label"><%= @body.nil? ? 'Bodies' : @body.name %></span>
+        <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">        
           <% @bodies = Body.all %>
           <% @bodies.each do |body| %>
-            <li value=<%= body.id %>><a href="#"><i class="icon-large"></i><%= body.name %></a></li>
+            <li value=<%= body.id %>><a href="#"><%= body.name %></a></li>
           <% end %>
         </ul>
       </div>
     <% end %>
-  </div>  
-  
-  <div class="field">
-    <%= number_field_tag 'year', @year.nil? ? nil: @year, :in => 1980...2014, :class => 'textBox', :title => 'Year' %>
   </div>
-  <div class="field">
-    <%= email_field_tag 'email', @email.nil? ? nil: @email.value, :class => 'textBox', :title => 'EMail' %>
+ 
+  <div class="control-group">
+    <%= number_field_tag 'year', @year.nil? ? nil: @year, :in => 1980...2014, :class => 'textBox', :title => 'Year', :placeholder=>"Year" %>
   </div>
-  <div class="field">
-    <%= telephone_field_tag 'phone', @phone.nil? ? nil: @phone.value, :class => 'textBox', :title => 'Phone' %>
+  <div class="control-group">  
+    <%= text_field_tag 'name', @name.nil? ? nil: @name.value, :class => 'textBox', :title => 'Name', :placeholder=>"Name"  %>
   </div>
+  <div class="control-group">  
+    <%= email_field_tag 'email', @email.nil? ? nil: @email.value, :class => 'textBox', :title => 'EMail', :placeholder=>"Email"  %>
+  </div>
+  <div class="control-group">
+    <%= telephone_field_tag 'phone', @phone.nil? ? nil: @phone.value, :class => 'textBox', :title => 'Phone', :placeholder=>"Phone" %>
+  </div>
+  <div class="control-group">
   <%= submit_tag 'Register', :class =>'btn'%>
+  </div>
 <% end %>
 <div id="Templates">
-  <div id="modelsListTemplate"  class="btn-group">      
-    <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+  <div id="modelsListTemplate" class="btn-group">      
+    <a class="btn dropdown-toggle custom-button" data-toggle="dropdown" href="#">
         <span id="models_label">Models</span>
         <span class="caret"></span>
     </a> 
     <ul class="dropdown-menu">
     </ul>
   </div>
-  <div id="bodiesListTemplate"  class="btn-group">      
-    <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+  <div id="bodiesListTemplate" class="btn-group">      
+    <a class="btn dropdown-toggle custom-button" data-toggle="dropdown" href="#">
         <span id="bodies_label">Bodies</span>
         <span class="caret"></span>
     </a>  

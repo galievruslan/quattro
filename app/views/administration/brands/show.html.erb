@@ -5,5 +5,20 @@
   <%= @brand.name %>
 </p>
 
+<table class="table table-striped table-hover">
+  <thead>
+    <tr>
+      <th>Model name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @brand.models.each do |model| %>  
+    <tr>
+      <td><%= model.name %></td>
+    </tr>
+    <%end%>
+  </tbody>
+</table>
+
 <%= link_to 'Edit', edit_administration_brand_path(@brand) %> |
 <%= link_to 'Back', administration_brands_path %>

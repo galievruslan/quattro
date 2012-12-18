@@ -60,7 +60,7 @@ class Administration::BodiesController < AdministrationController
 
     respond_to do |format|
       if @body.update_attributes(params[:body])
-        format.html { redirect_to @body, notice: 'Body was successfully updated.' }
+        format.html { redirect_to administration_body_path(@body), notice: 'Body was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

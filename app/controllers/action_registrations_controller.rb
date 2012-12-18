@@ -57,10 +57,16 @@ class ActionRegistrationsController < ApplicationController
       @email = Email.new({:value => params[:email]})
       @customer.contacts << @email
     end
+    
+    @name
+    if (params.has_key?(:name) && !params[:name].empty?)
+      @customer.name = params[:name]
+    end
 
-    if (!@phone && !@email)
-      @action_registration.errors.add(:email, "email or phone shuld be filled in")
-      @action_registration.errors.add(:phone, "email or phone shuld be filled in")
+    if (!@phone && !@email && !@name)
+      @action_registration.errors.add(:email, "email or phone or name shuld be filled in")
+      @action_registration.errors.add(:phone, "email or phone or name shuld be filled in")
+      @action_registration.errors.add(:name, "email or phone or name shuld be filled in")
     end
 
     saved = false

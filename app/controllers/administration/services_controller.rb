@@ -60,7 +60,7 @@ class Administration::ServicesController < AdministrationController
 
     respond_to do |format|
       if @service.update_attributes(params[:service])
-        format.html { redirect_to @service, notice: 'Service was successfully updated.' }
+        format.html { redirect_to administration_service_path(@service), notice: 'Service was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
