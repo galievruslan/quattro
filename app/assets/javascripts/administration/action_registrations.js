@@ -46,7 +46,7 @@ function create_list(data, placeholder, template, newId, clickCallback) {
 		var listItemTemplate = $('#listItemTemplate').clone();
 		listItemTemplate.removeAttr('id');
 		listItemTemplate.attr('value', this.id);		
-		listItemTemplate.find('a').append(this.name);
+		listItemTemplate.append(this.name);
 		listTemplate.find('.dropdown-menu').append(listItemTemplate);
 	});
 	
@@ -62,7 +62,7 @@ function AddEventListeners(menu){
 	$(menu).on('click', 'li', function(event) {
 			var listId = $(this).parent().parent().attr('id');
 			var listItemValue = $(this).val();
-			var listItemText = $(this).find('a').text();
+			var listItemText = $(this).text();
 
 			switch(listId) {
 				case 'brands': {

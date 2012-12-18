@@ -1,4 +1,4 @@
-<%= form_for @service, :url=>url_for(:controller => 'administration/services') do |f| %>
+<%= form_for [:administration, @service] do |f| %>
   <% if @service.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@service.errors.count, "error") %> prohibited this service from being saved:</h2>
