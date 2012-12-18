@@ -1,11 +1,12 @@
 <h2><%= t('photos.title') %></h2>
 <%= form_for ProjectPhoto.new, :url => administration_project_photos_path, :html => { :multipart => true, :id => "fileupload"  } do |f| %>
+  <%= hidden_field_tag 'project_id', 4 %>
   <div class="row">
     <div class="span16 fileupload-buttonbar">
       <div class="progressbar fileupload-progressbar nofade"><div style="width:0%;"></div></div>
       <span class="btn success fileinput-button">
         <span><%= t('photos.add_files') %>...</span>
-        <%= f.file_field :file, :multiple => true %>
+        <%= f.file_field :image, :multiple => true %>
       </span>
       <button type="submit" class="btn primary start"><%= t('photos.start_upload') %></button>
       <button type="reset" class="btn info cancel"><%= t('photos.cancel_upload') %></button>
@@ -77,20 +78,6 @@
   </tr>
   {% } %}
 </script>
-
-
-<!-- The jQuery UI widget factory, can be omitted if jQuery UI is already included -->
-<%= javascript_include_tag 'jquery.ui.widget.js' %>
-<script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
-<!-- The Templates and Load Image plugins are included for the FileUpload user interface -->
-<script src="http://blueimp.github.com/JavaScript-Templates/tmpl.min.js"></script>
-<script src="http://blueimp.github.com/JavaScript-Load-Image/load-image.min.js"></script>
-<!-- The Iframe Transport is required for browsers without support for XHR file uploads -->
-<%= javascript_include_tag 'jquery.iframe-transport.js' %>
-<%= javascript_include_tag 'jquery.fileupload.js' %>
-<%= javascript_include_tag 'jquery.fileupload-ui.js' %>
-<!-- add include_tag js files to config.assets.precompile in ...environments/production.rb if you have it in vendor/ assets -->
-
 <script type="text/javascript" charset="utf-8">
     $(function () {
         // Initialize the jQuery File Upload widget:

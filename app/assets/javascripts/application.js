@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+
 $(function() {
 			$("div#makeMeScrollable").smoothDivScroll({ autoScroll: "onstart", 
 														autoScrollDirection: "backandforth",
