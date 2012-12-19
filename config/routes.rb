@@ -1,5 +1,6 @@
 Quattro::Application.routes.draw do
-  devise_for :users 
+  
+  devise_for :users  
   resources :contacts
   resources :companies
   resources :customers
@@ -16,7 +17,7 @@ Quattro::Application.routes.draw do
   match '/about', :to => 'companies#show'
   match '/admin', :to => 'administration/companies#show'
   
-  namespace :administration do 
+  namespace :administration do
     resources :projects 
     resources :project_photos 
     resources :companies

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= title %></title>
+  <%= csrf_meta_tag %>
+  <%= stylesheet_link_tag 'administration', :media => 'screen' %> 
+  <%= javascript_include_tag 'jquery-1.8.3.min.js' %>
+  <%= javascript_include_tag 'administration' %>
+</head>
+  <body>
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span4">
+        </div>
+        <div class="well well-small span4">   
+          <%= yield %>
+        </div>
+        <div class="span4">
+        </div>   
+      </div>
+    </div>
+  </body>
+</html>
