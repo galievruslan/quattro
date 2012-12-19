@@ -4,6 +4,8 @@
 * Copyright 2012 Twitter, Inc.
 * http://www.apache.org/licenses/LICENSE-2.0.txt
 */
+//= require jquery
+//= require jquery_ujs
 //= require jquery-fileupload
 //= require jquery-fileupload/vendor/jquery.ui.widget
 //= require jquery-fileupload/vendor/load-image

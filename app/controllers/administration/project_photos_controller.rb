@@ -1,7 +1,7 @@
 class Administration::ProjectPhotosController < AdministrationController
 
   def index
-    project = Project.find(3)
+    project = Project.find(2)
     @project_photos = project.project_photos
     
     respond_to do |format|
@@ -11,12 +11,13 @@ class Administration::ProjectPhotosController < AdministrationController
   end
 
   def create
-    project = Project.find(3)
+    project = Project.find(2)
     p_attr = params[:project_photo]
-    p_attr[:image] = params[:project_photo][:file].first if params[:project_photo][:file].class == Array
+    photo = params[:project_photo][:image].first if params[:project_photo][:image].class == Array
 
-    @project_photo = ProjectPhoto.new(p_attr)
-    @project_photo.project_id = 3
+
+    @project_photo = ProjectPhoto.new(:image => photo)
+    @project_photo.project_id = 2
 
     if @project_photo.save
       respond_to do |format|

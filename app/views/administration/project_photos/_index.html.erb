@@ -1,6 +1,6 @@
 <h2><%= t('photos.title') %></h2>
 <%= form_for ProjectPhoto.new, :url => administration_project_photos_path, :html => { :multipart => true, :id => "fileupload"  } do |f| %>  
-  <%= hidden_field_tag 'project_id', 2 %>
+  <%= hidden_field_tag 'project_id', @project.id %>
   <div class="row">
     <div class="span16 fileupload-buttonbar">
       <div class="progressbar fileupload-progressbar nofade"><div style="width:0%;"></div></div>
