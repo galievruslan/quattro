@@ -63,6 +63,8 @@ class ActionRegistrationsController < ApplicationController
       @customer.name = params[:name]
     end
 
+    @date=DateTime.now.to_date
+
     if (!@phone && !@email && !@name)
       @action_registration.errors.add(:email, "email or phone or name shuld be filled in")
       @action_registration.errors.add(:phone, "email or phone or name shuld be filled in")
@@ -76,7 +78,7 @@ class ActionRegistrationsController < ApplicationController
       ActionRegistration.transaction do
         @customer.save
         @vehicle.save
-        @action_registration = ActionRegistration.new({:vehicle => @vehicle, :customer => @customer})
+        @action_registration = ActionRegistration.new({:vehicle => @vehicle, :customer => @customer, :date => @date})
         @action_registration.save
 
         saved = true

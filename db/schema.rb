@@ -16,6 +16,7 @@ ActiveRecord::Schema.define(:version => 20121201093319) do
   create_table "action_registrations", :force => true do |t|
     t.integer  "customer_id"
     t.integer  "vehicle_id"
+    t.date     "date"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end
@@ -33,7 +34,7 @@ ActiveRecord::Schema.define(:version => 20121201093319) do
   end
 
   create_table "companies", :force => true do |t|
-    t.string   "description"
+    t.text     "description"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end
@@ -70,7 +71,7 @@ ActiveRecord::Schema.define(:version => 20121201093319) do
   end
 
   create_table "projects", :force => true do |t|
-    t.string   "description"
+    t.text     "description"
     t.date     "finish_date"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
@@ -90,7 +91,7 @@ ActiveRecord::Schema.define(:version => 20121201093319) do
 
   create_table "services", :force => true do |t|
     t.string   "name"
-    t.string   "description"
+    t.text     "description"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end

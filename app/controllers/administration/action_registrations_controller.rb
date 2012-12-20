@@ -89,6 +89,9 @@ class Administration::ActionRegistrationsController < AdministrationController
       @customer.contacts << @email
     end
 
+    @date=DateTime.now.to_date
+    
+
     if (!@phone && !@email && !@name)
       @action_registration.errors.add(:email, "email or phone or name shuld be filled in")
       @action_registration.errors.add(:phone, "email or phone or name shuld be filled in")      
@@ -102,7 +105,7 @@ class Administration::ActionRegistrationsController < AdministrationController
       ActionRegistration.transaction do
         @customer.save
         @vehicle.save
-        @action_registration = ActionRegistration.new({:vehicle => @vehicle, :customer => @customer})
+        @action_registration = ActionRegistration.new({:vehicle => @vehicle, :customer => @customer, :date => @date})
         @action_registration.save
 
         saved = true
@@ -111,7 +114,7 @@ class Administration::ActionRegistrationsController < AdministrationController
 
     respond_to do |format|
       if saved
-        format.html { redirect_to @action_registration, notice: 'Action registration was successfully created.' }
+        format.html { redirect_to administration_action_registration_path(@action_registration), notice: 'Action registration was successfully created.' }
         format.json { render json: @action_registration, status: :created, location: @action_registration }
       else
         format.html { render action: "new" }
@@ -127,7 +130,7 @@ class Administration::ActionRegistrationsController < AdministrationController
 
     respond_to do |format|
       if @action_registration.update_attributes(params[:action_registration])
-        format.html { redirect_to @action_registration, notice: 'Action registration was successfully updated.' }
+        format.html { redirect_to administration_action_registration_path(@action_registration), notice: 'Action registration was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

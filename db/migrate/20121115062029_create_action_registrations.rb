@@ -3,6 +3,7 @@ class CreateActionRegistrations < ActiveRecord::Migration
     create_table :action_registrations do |t|
       t.integer :customer_id
       t.integer :vehicle_id
+      t.date :date
 
       t.timestamps
     end
