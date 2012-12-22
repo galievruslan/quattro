@@ -22,6 +22,9 @@
     <%= f.label :finish_date %><br />
     <%= f.date_select :finish_date %>
   </div>
+  <div>
+    <%= render :partial => '/administration/project_photos/index', :object => @project_photos.collect { |p| p.to_jq_upload }.to_json %>    
+  </div>
   <div class="actions">
     <%= f.submit(:class =>'btn') %>
   </div>

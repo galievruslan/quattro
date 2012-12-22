@@ -34,6 +34,7 @@ class Administration::ProjectsController < AdministrationController
   # GET /administration/projects/1/edit
   def edit
     @project = Project.find(params[:id])
+    @project_photos = @project.project_photos
   end
 
   # POST /administration/projects

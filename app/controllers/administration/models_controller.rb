@@ -30,6 +30,7 @@ class Administration::ModelsController < AdministrationController
   # GET /models/new
   # GET /models/new.json
   def new
+    @brand_id = params[:brand_id]
     @model = Model.new
 
     respond_to do |format|
@@ -46,10 +47,12 @@ class Administration::ModelsController < AdministrationController
   # POST /models
   # POST /models.json
   def create
+    @brand = Brand.find(params[:brand_id])
     @model = Model.new(params[:model])
+    @brand.models << @model
 
     respond_to do |format|
-      if @model.save
+      if @brand.save
         format.html { redirect_to @model, notice: 'Model was successfully created.' }
         format.json { render json: @model, status: :created, location: @model }
       else
