@@ -76,7 +76,7 @@ class Administration::ServicesController < AdministrationController
     @service.destroy
 
     respond_to do |format|
-      format.html { redirect_to services_url }
+      format.html { redirect_to administration_services_path }
       format.json { head :no_content }
     end
   end

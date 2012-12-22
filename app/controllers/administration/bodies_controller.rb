@@ -76,7 +76,7 @@ class Administration::BodiesController < AdministrationController
     @body.destroy
 
     respond_to do |format|
-      format.html { redirect_to bodies_url }
+      format.html { redirect_to administration_bodies_path }
       format.json { head :no_content }
     end
   end

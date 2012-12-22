@@ -76,7 +76,7 @@ class Administration::BrandsController < AdministrationController
     @brand.destroy
 
     respond_to do |format|
-      format.html { redirect_to brands_url }
+      format.html { redirect_to administration_brands_path }
       format.json { head :no_content }
     end
   end

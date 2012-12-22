@@ -76,7 +76,7 @@ class Administration::CustomersController < AdministrationController
     @customer.destroy
 
     respond_to do |format|
-      format.html { redirect_to customers_url }
+      format.html { redirect_to administration_customers_path }
       format.json { head :no_content }
     end
   end

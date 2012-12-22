@@ -1,0 +1,23 @@
+<h4>Listing contacts</h4>
+<table class="table table-striped table-hover">
+  <thead>
+    <tr>
+        <th>Contact Type</th>
+        <th>Contact</th>
+        <th colspan="2"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @company.contacts.each do |contact| %>  
+    <tr>
+      <td><%= contact.type %></td>
+      <td><%= contact.value %></td>      
+      <td><%= link_to 'Edit', edit_administration_contact_path(contact) %></td>
+      <td><%= link_to 'Destroy', administration_contact_path(contact), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+    <%end%>
+  </tbody>
+</table>
+<%= link_to 'New Email', new_administration_contact_path(type: 'Email'), :class =>'btn' %>
+<%= link_to 'New Phone', new_administration_contact_path(type: 'Phone'), :class =>'btn' %>
+<%= link_to 'New Address', new_administration_contact_path(type: 'Address'), :class =>'btn' %><br><br>

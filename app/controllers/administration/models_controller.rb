@@ -53,7 +53,7 @@ class Administration::ModelsController < AdministrationController
 
     respond_to do |format|
       if @brand.save
-        format.html { redirect_to @model, notice: 'Model was successfully created.' }
+        format.html { redirect_to edit_administration_brand_path(@brand), notice: 'Model was successfully created.' }
         format.json { render json: @model, status: :created, location: @model }
       else
         format.html { render action: "new" }
@@ -66,10 +66,11 @@ class Administration::ModelsController < AdministrationController
   # PUT /models/1.json
   def update
     @model = Model.find(params[:id])
+    @brand = Brand.find(@model.brand_id)
 
     respond_to do |format|
       if @model.update_attributes(params[:model])
-        format.html { redirect_to @model, notice: 'Model was successfully updated.' }
+        format.html { redirect_to edit_administration_brand_path(@brand), notice: 'Model was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -82,10 +83,11 @@ class Administration::ModelsController < AdministrationController
   # DELETE /models/1.json
   def destroy
     @model = Model.find(params[:id])
+    @brand = Brand.find(@model.brand_id)
     @model.destroy
 
     respond_to do |format|
-      format.html { redirect_to models_url }
+      format.html { redirect_to edit_administration_brand_path(@brand) }
       format.json { head :no_content }
     end
   end

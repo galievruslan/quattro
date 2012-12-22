@@ -14,7 +14,8 @@ class Administration::ActionRegistrationsController < AdministrationController
   # GET /action_registrations/1.json
   def show
     @action_registration = ActionRegistration.find(params[:id])
-
+    @customer = Customer.find_by_id(@action_registration.customer_id)
+    @vehicle= Vehicle.find_by_id(@action_registration.vehicle_id)
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @action_registration }
@@ -146,7 +147,7 @@ class Administration::ActionRegistrationsController < AdministrationController
     @action_registration.destroy
 
     respond_to do |format|
-      format.html { redirect_to action_registrations_url }
+      format.html { redirect_to administration_action_registrations_path }
       format.json { head :no_content }
     end
   end
