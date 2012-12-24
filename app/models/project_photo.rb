@@ -13,7 +13,7 @@ class ProjectPhoto < ActiveRecord::Base
       "url" => image.url,
       "thumbnail_url" => image.thumb('80x80#').url,
       "delete_url" => administration_project_photo_path(:id => id),
-      "delete_type" => "DELETE" 
+      "delete_type" => "DELETE"
     }
   end
 end

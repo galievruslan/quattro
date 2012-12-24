@@ -1,11 +1,11 @@
 class Administration::ProjectPhotosController < AdministrationController
 
   def index
-    @project_photos = ProjectPhoto.all
+    @project = Project.find(params[:project_id])
     
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render :json => @project_photos.collect { |p| p.to_jq_upload }.to_json }
+      format.json { render :json => @project.project_photos.collect { |p| p.to_jq_upload }.to_json }
     end
   end
 
