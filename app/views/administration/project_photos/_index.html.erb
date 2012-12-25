@@ -1,28 +1,24 @@
-<%= form_for ProjectPhoto.new, :url => administration_project_photos_path, :html => { :multipart => true  } do |f| %>  
-<div id="fileupload">
-  <%= hidden_field_tag 'project_id', @project.id %>
-  <div class="row">
-    <div class="span16 fileupload-buttonbar">
-      <div class="progressbar fileupload-progressbar nofade"><div style="width:0%;"></div></div>
-      <span class="btn success fileinput-button">
-        <span><%= t('photos.add_files') %>...</span>
-        <%= f.file_field :image, :multiple => true %>
-      </span>
-      <button type="submit" class="btn primary start"><%= t('photos.start_upload') %></button>
-      <button type="reset" class="btn info cancel"><%= t('photos.cancel_upload') %></button>
-      <button type="button" class="btn danger delete"><%= t('photos.delete_selected') %></button>
-      <input type="checkbox" class="toggle">
-    </div>
-  </div>
-  <br>
-  <div class="row">
-    <div class="span16">
-      <table class="zebra-striped"><tbody class="files"></tbody></table>
-      <div id="loading"> </div>
-    </div>
+<%= hidden_field_tag 'project_id', @project.id %>
+<div class="row">
+  <div class="span16 fileupload-buttonbar">
+    <div class="progressbar fileupload-progressbar nofade"><div style="width:0%;"></div></div>
+    <span class="btn success fileinput-button">
+      <span><%= t('photos.add_files') %>...</span>
+      <%= file_field(:project_photo, :image, :multiple => true) %>
+    </span>
+    <button type="submit" class="btn primary start "><%= t('photos.start_upload') %></button>
+    <button type="reset" class="btn info cancel"><%= t('photos.cancel_upload') %></button>
+    <button type="button" class="btn danger delete"><%= t('photos.delete_selected') %></button>
+    <input type="checkbox" class="toggle">
   </div>
 </div>
-<% end %>
+<br>
+<div class="row">
+  <div class="span16">
+    <table class="zebra-striped"><tbody class="files"></tbody></table>
+    <div id="loading"> </div>
+  </div>
+</div>
 
 <script>
   var fileUploadErrors = {
@@ -82,10 +78,7 @@
 <script type="text/javascript" charset="utf-8">
     $(function () {
         // Initialize the jQuery File Upload widget:
-        $('#fileupload').fileupload({
-          url: '/administration/project_photos/index.json',
-          sequentialUploads: true
-        });
+        $('#fileupload').fileupload();
         // 
         // Load existing files:
         $.getJSON('/administration/project_photos', { project_id: $('#project_id').val() }, function (files) {

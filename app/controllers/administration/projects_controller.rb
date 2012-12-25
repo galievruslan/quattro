@@ -34,7 +34,6 @@ class Administration::ProjectsController < AdministrationController
   # GET /administration/projects/1/edit
   def edit
     @project = Project.find(params[:id])
-    @project_photos = @project.project_photos
   end
 
   # POST /administration/projects
@@ -63,9 +62,27 @@ class Administration::ProjectsController < AdministrationController
   # PUT /administration/projects/1.json
   def update
     @project = Project.find(params[:id])
+    p_attr = params[:project_photo]
+
+    @project_photo
+    if params[:project_photo] && 
+       params[:project_photo][:image] &&
+       params[:project_photo][:image].class == Array      
+      photo = params[:project_photo][:image].first
+      @project_photo = @project.project_photos.build(:image => photo)
+    end
 
     respond_to do |format|
-      if @project.update_attributes(params[:project])
+      if (@project_photo && @project_photo.save)
+        format.html {  
+          render :json => [@project_photo.to_jq_upload].to_json, 
+          :content_type => 'text/html',
+          :layout => false
+        }
+        format.json {  
+          render :json => [@project_photo.to_jq_upload].to_json     
+        }
+      elsif @project.update_attributes(params[:project])
         format.html { redirect_to administration_project_path(@project), notice: 'Project was successfully updated.' }
         format.json { head :no_content }
       else
