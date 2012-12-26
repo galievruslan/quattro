@@ -40,6 +40,7 @@
       <div id="modelsPlaceHolder">
       </div>  
     <% else %>
+    <div id="modelsPlaceHolder">
       <div id="models" class="btn-group">
         <a class="btn dropdown-toggle custom-button" data-toggle="dropdown">      
           <span id="models_label"><%= @model.nil? ? 'Models' : @model.name %></span>
@@ -51,6 +52,7 @@
           <% end %>
         </ul>
       </div>
+    </div>  
     <% end %>   
   </div>
   <div class="control-group">
@@ -59,6 +61,7 @@
       <div id="bodiesPlaceHolder">
       </div>
     <% else %>
+    <div id="bodiesPlaceHolder">
       <div id="bodies" class="btn-group">
         <a class="btn dropdown-toggle custom-button" data-toggle="dropdown">       
         <span id="bodies_label"><%= @body.nil? ? 'Bodies' : @body.name %></span>
@@ -71,6 +74,7 @@
           <% end %>
         </ul>
       </div>
+    </div>
     <% end %>
   </div>
  
@@ -78,7 +82,7 @@
     <%= number_field_tag 'year', @year.nil? ? nil: @year, :in => 1980...2014, :class => 'textBox', :title => 'Year', :placeholder=>"Year" %>
   </div>
   <div class="control-group">  
-    <%= text_field_tag 'name', @name.nil? ? nil: @name.value, :class => 'textBox', :title => 'Name', :placeholder=>"Name"  %>
+    <%= text_field_tag 'name', @name.nil? ? nil: @name, :class => 'textBox', :title => 'Name', :placeholder=>"Name"  %>
   </div>
   <div class="control-group">  
     <%= email_field_tag 'email', @email.nil? ? nil: @email.value, :class => 'textBox', :title => 'EMail', :placeholder=>"Email"  %>

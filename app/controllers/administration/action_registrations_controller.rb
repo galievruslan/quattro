@@ -49,8 +49,10 @@ class Administration::ActionRegistrationsController < AdministrationController
     @body=@vehicle.body
     @year=@vehicle.year
     @name=@customer.name
-    @email=@customer.contacts.find_by_type(:Email).value
-    @phone=@customer.contacts.find_by_type(:Phone).value
+    if (@customer.contacts)
+      @email = @customer.contacts.find_by_type(:Email)
+      @phone = @customer.contacts.find_by_type(:Phone)
+    end
   end
 
   # POST /action_registrations
