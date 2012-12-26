@@ -1,9 +1,10 @@
 class Administration::ActionRegistrationsController < AdministrationController
+  
   # GET /action_registrations
   # GET /action_registrations.json
   def index
     @action_registrations = ActionRegistration.all
-
+    
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @action_registrations }
@@ -16,6 +17,11 @@ class Administration::ActionRegistrationsController < AdministrationController
     @action_registration = ActionRegistration.find(params[:id])
     @customer = Customer.find_by_id(@action_registration.customer_id)
     @vehicle= Vehicle.find_by_id(@action_registration.vehicle_id)
+    if @action_registration.status==true
+      @status='Ready'
+    else
+      @status='Not ready'
+    end
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @action_registration }
@@ -36,6 +42,15 @@ class Administration::ActionRegistrationsController < AdministrationController
   # GET /action_registrations/1/edit
   def edit
     @action_registration = ActionRegistration.find(params[:id])
+    @customer = Customer.find_by_id(@action_registration.customer_id)
+    @vehicle= Vehicle.find_by_id(@action_registration.vehicle_id)
+    @brand=@vehicle.model.brand
+    @model=@vehicle.model
+    @body=@vehicle.body
+    @year=@vehicle.year
+    @name=@customer.name
+    @email=@customer.contacts.find_by_type(:Email).value
+    @phone=@customer.contacts.find_by_type(:Phone).value
   end
 
   # POST /action_registrations
@@ -76,27 +91,27 @@ class Administration::ActionRegistrationsController < AdministrationController
     @name
     if (params.has_key?(:name) && !params[:name].empty?)
       @customer.name = params[:name]
-    end
+    else
+      @action_registration.errors.add(:name, "wasn't filled in")
+    end 
     
     @phone
     if (params.has_key?(:phone) && !params[:phone].empty?)
       @phone = Phone.new({:value => params[:phone]})
       @customer.contacts << @phone
-    end
+    end 
 
     @email
     if (params.has_key?(:email) && !params[:email].empty?)
       @email = Email.new({:value => params[:email]})
       @customer.contacts << @email
-    end
+    end 
 
     @date=DateTime.now.to_date
     
 
-    if (!@phone && !@email && !@name)
-      @action_registration.errors.add(:email, "email or phone or name shuld be filled in")
-      @action_registration.errors.add(:phone, "email or phone or name shuld be filled in")      
-      @action_registration.errors.add(:name, "email or phone or name shuld be filled in")
+    if (!@phone && !@email)
+      @action_registration.errors.add(:email, ' or phone shuld be filled in')
     end
 
     saved = false
@@ -106,7 +121,7 @@ class Administration::ActionRegistrationsController < AdministrationController
       ActionRegistration.transaction do
         @customer.save
         @vehicle.save
-        @action_registration = ActionRegistration.new({:vehicle => @vehicle, :customer => @customer, :date => @date})
+        @action_registration = ActionRegistration.new({:vehicle => @vehicle, :customer => @customer, :date => @date, :status => false  })
         @action_registration.save
 
         saved = true
@@ -129,6 +144,65 @@ class Administration::ActionRegistrationsController < AdministrationController
   def update
     @action_registration = ActionRegistration.find(params[:id])
 
+    @brand
+    if (params.has_key?(:brand_id) && !params[:brand_id].empty?)
+      @brand = Brand.find(params[:brand_id])
+    else
+      @action_registration.errors.add(:brand_id, "wasn't filled in")
+    end
+
+    @model
+    if (params.has_key?(:model_id) && !params[:model_id].empty?)
+      @model = @brand.models.find(params[:model_id])
+    else
+      @action_registration.errors.add(:model_id, "wasn't filled in")
+    end
+
+    @body
+    if (params.has_key?(:body_id) && !params[:body_id].empty?)
+      @body = Body.find(params[:body_id])
+    else
+      @action_registration.errors.add(:body_id, "wasn't filled in")
+    end
+
+    @year
+    if (params.has_key?(:year) && !params[:year].empty?)
+      @year = params[:year]
+    else
+      @action_registration.errors.add(:year, "wasn't filled in")
+    end    
+
+    @customer = Customer.find_by_id(@action_registration.customer_id)
+    
+    @name
+    if (params.has_key?(:name) && !params[:name].empty?)
+      @customer.name = params[:name]
+    end
+    
+    @phone
+    if (params.has_key?(:phone) && !params[:phone].empty?)
+      @customer.contacts.find_by_type(:Phone).update_attributes(value: params[:phone])
+    end
+
+    @Email
+    if (params.has_key?(:email) && !params[:email].empty?)
+      @customer.contacts.find_by_type(:Email).update_attributes(value: params[:email])
+    end
+    
+    @vehicle= Vehicle.find_by_id(@action_registration.vehicle_id)
+
+    @date=DateTime.now.to_date
+
+    if (!@phone && !@email && !@name)
+      @action_registration.errors.add(:email, "email or phone or name shuld be filled in")
+      @action_registration.errors.add(:phone, "email or phone or name shuld be filled in")      
+      @action_registration.errors.add(:name, "email or phone or name shuld be filled in")
+    end
+
+    @vehicle.update_attributes({:model => @model, :body => @body, :year => @year})
+    @action_registration.update_attributes({:vehicle => @vehicle, :customer => @customer, :date => @date, :status => false  })
+    @customer.save
+
     respond_to do |format|
       if @action_registration.update_attributes(params[:action_registration])
         format.html { redirect_to administration_action_registration_path(@action_registration), notice: 'Action registration was successfully updated.' }
@@ -149,6 +223,20 @@ class Administration::ActionRegistrationsController < AdministrationController
     respond_to do |format|
       format.html { redirect_to administration_action_registrations_path }
       format.json { head :no_content }
+    end
+  end
+
+  def change_status
+    @action_registration = ActionRegistration.find(params[:id])
+    if @action_registration.status==true
+      @action_registration.status=false
+    else
+      @action_registration.status=true
+    end
+    @action_registration.save
+    respond_to do |format|
+        format.html { redirect_to administration_action_registrations_path, notice: 'Action registration status was changed.' }
+        format.json { head :no_content }      
     end
   end
 end

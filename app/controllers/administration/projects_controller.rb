@@ -1,5 +1,6 @@
 class Administration::ProjectsController < AdministrationController
-	# GET /administration/projects
+	
+  # GET /administration/projects
   # GET /administration/projects.json
   def index
     @projects = Project.find(:all)

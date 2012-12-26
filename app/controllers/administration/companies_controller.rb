@@ -1,9 +1,9 @@
 class Administration::CompaniesController < AdministrationController
   COMPANY_ID = 1
-
   # GET /administration/companies/1
   # GET /administration/companies/1.json
   def show
+
   	begin
     	@company = Company.find(COMPANY_ID)
     rescue ActiveRecord::RecordNotFound

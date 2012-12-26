@@ -1,4 +1,5 @@
 class Administration::ServicesController < AdministrationController
+  
   # GET /services
   # GET /services.json
   def index

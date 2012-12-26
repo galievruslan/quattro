@@ -1,4 +1,5 @@
 class Administration::BodiesController < AdministrationController
+  
   # GET /bodies
   # GET /bodies.json
   def index

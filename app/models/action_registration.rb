@@ -1,5 +1,5 @@
 class ActionRegistration < ActiveRecord::Base
-  attr_accessible :customer_id, :vehicle_id, :vehicle, :customer, :date
+  attr_accessible :customer_id, :vehicle_id, :vehicle, :customer, :date, :status
   belongs_to :vehicle
   belongs_to :customer
   validates :customer_id, :presence => true

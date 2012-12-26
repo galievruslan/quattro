@@ -21,7 +21,11 @@ Quattro::Application.routes.draw do
     resources :projects 
     resources :project_photos 
     resources :companies
-    resources :action_registrations
+    resources :action_registrations do
+      member do
+        put :change_status
+      end
+    end
     resources :bodies
     resources :brands
     resources :customers

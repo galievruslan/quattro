@@ -16,28 +16,28 @@
       
       <ul class="nav nav-tabs nav-stacked">
       <li class="nav-header">JAdminKo menu </li>
-          <li>
+          <li <%= 'class=active' if @current_controller =='companies'%>>
             <%= link_to "Company", :controller => administration_companies_path, :action => 'show', :id => '1' %>
           </li>
-          <li>
+          <li <%= 'class=active' if @current_controller =='projects'%>>
             <%= link_to "Projects", :controller =>  administration_projects_path %>
           </li>
-          <li>
+          <li <%= 'class=active' if @current_controller =='action_registrations'%>>
             <%= link_to "Action Registrations", :controller =>  administration_action_registrations_path %>
           </li>
-          <li>
+          <li <%= 'class=active' if @current_controller =='customers'%>>
             <%= link_to "Customers", :controller =>  administration_customers_path %>
           </li>
-          <li>
+          <li <%= 'class=active' if @current_controller =='contacts'%>>
             <%= link_to "Contacts", :controller =>  administration_contacts_path %>
           </li>
-          <li>
+          <li <%= 'class=active' if @current_controller =='brands'%>>
             <%= link_to "Brands", :controller =>  administration_brands_path %>
           </li>
-          <li>
+          <li <%= 'class=active' if @current_controller =='bodies'%>>
             <%= link_to "Bodies", :controller =>  administration_bodies_path %>
           </li>
-          <li>
+          <li <%= 'class=active' if @current_controller =='services'%>>
             <%= link_to "Services", :controller =>  administration_services_path %>
           </li><li class="nav-header">Admin settings</li>
           <li>
@@ -46,6 +46,7 @@
     </div>
     
     <div class="span10 well">
+
       <%= yield %> 
     </div>
   </div>

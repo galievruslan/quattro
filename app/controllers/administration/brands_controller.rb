@@ -1,4 +1,5 @@
 class Administration::BrandsController < AdministrationController
+  
   # GET /brands
   # GET /brands.json
   def index

@@ -1,4 +1,5 @@
 class Administration::ContactsController < AdministrationController
+  
   # GET /contacts
   # GET /contacts.json
   def index

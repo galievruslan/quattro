@@ -93,4 +93,4 @@ fourth_project_photos=ProjectPhoto.create([{default: true, image_name: "Sylphy_1
 @firth_project.project_photos << firth_project_photos
 @fourth_project.project_photos << fourth_project_photos
 @customer = Customer.create({:name => "customer 1"})
-@action_registration = ActionRegistration.create({date: '2012-12-20', :customer => @customer, :vehicle => @vw_jetta_sedan})
+@action_registration = ActionRegistration.create({date: '2012-12-20', :customer => @customer, :vehicle => @vw_jetta_sedan, :status => true})
