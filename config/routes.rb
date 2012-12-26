@@ -18,8 +18,12 @@ Quattro::Application.routes.draw do
   match '/admin', :to => 'administration/companies#show'
   
   namespace :administration do
-    resources :projects 
-    resources :project_photos 
+    resources :projects  do
+      member do
+        put :set_default_photo
+      end
+    end    
+    resources :project_photos
     resources :companies
     resources :action_registrations do
       member do

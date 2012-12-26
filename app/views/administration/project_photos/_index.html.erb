@@ -4,7 +4,7 @@
     <div class="progressbar fileupload-progressbar nofade"><div style="width:0%;"></div></div>
     <span class="btn success fileinput-button">
       <span><%= t('photos.add_files') %>...</span>
-      <%= file_field(:project_photo, :image, :multiple => true) %>
+      <%= file_field(:project_photo, :image, :multiple => true) %>      
     </span>
     <button type="submit" class="btn primary start "><%= t('photos.start_upload') %></button>
     <button type="reset" class="btn info cancel"><%= t('photos.cancel_upload') %></button>
@@ -37,7 +37,7 @@
   <tr class="template-upload nofade">
     <td class="preview"><span class="nofade"></span></td>
     <td class="name">{%=file.name%}</td>
-    <td class="size">{%=o.formatFileSize(file.size)%}</td>
+    <td class="size">{%=o.formatFileSize(file.size)%}</td>    
     {% if (file.error) { %}
     <td class="error" colspan="2"><span class="label important">Error</span> {%=fileUploadErrors[file.error] || file.error%}</td>
     {% } else if (o.files.valid && !i) { %}
@@ -54,11 +54,18 @@
   {% for (var i=0, files=o.files, l=files.length, file=files[0]; i<l; file=files[++i]) { %}
   <tr class="template-download nofade">
     {% if (file.error) { %}
-    <td></td>
+    <td></td>    
     <td class="name">{%=file.name%}</td>
-    <td class="size">{%=o.formatFileSize(file.size)%}</td>
+    <td class="size">{%=o.formatFileSize(file.size)%}</td>    
     <td class="error" colspan="2"><span class="label important">Error</span> {%=fileUploadErrors[file.error] || file.error%}</td>
     {% } else { %}
+    <td>
+      {% if (file.default) { %}
+        <input type="radio" name="default" checked value={%=file.id%} onclick="defaultChanged()">
+      {% } else { %}
+        <input type="radio" name="default" value={%=file.id%} onclick="defaultChanged()">
+      {% } %}
+    </td>
     <td class="preview">{% if (file.thumbnail_url) { %}
       <a href="{%=file.url%}" title="{%=file.name%}" rel="gallery"><img src="{%=file.thumbnail_url%}"></a>
     {% } %}</td>
@@ -71,7 +78,7 @@
     <td class="delete">
     <button class="btn danger" data-type="{%=file.delete_type%}" data-url="{%=file.delete_url%}"><%= t('photos.template.delete') %></button>
     <input type="checkbox" name="delete" value="1">
-    </td>
+    </td>    
   </tr>
   {% } %}
 </script>
@@ -92,7 +99,21 @@
             template[0].offsetWidth;
           template.addClass('in');
           $('#loading').remove();
-        });
-
+        });        
     });
+</script>
+<script type="text/javascript" charset="utf-8">
+function defaultChanged(){
+  var newDefaultPhotoId = $('input[name=default]:checked').val();
+  var projectId = $('#project_id').val();
+  
+  $.ajax({
+        type: 'PUT',
+        url: '<%= set_default_photo_administration_project_path(@project) %>',
+        data: {'project_photo_id': newDefaultPhotoId, 'project_id': projectId },
+        success: function(json){
+        },
+        dataType: 'json'
+  });
+}
 </script>

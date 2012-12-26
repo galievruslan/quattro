@@ -104,4 +104,18 @@ class Administration::ProjectsController < AdministrationController
       format.json { head :no_content }
     end
   end
+
+  def set_default_photo
+    project = Project.find(params[:project_id])
+    project.project_photos.find_all_by_default(true).each do |project_photo|
+      project_photo.default = false
+      project_photo.save()
+    end
+
+    default_project_photo = ProjectPhoto.find(params[:project_photo_id])
+    default_project_photo.default = true
+    default_project_photo.save()
+
+    render :json => true
+  end
 end
