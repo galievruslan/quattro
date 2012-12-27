@@ -7,6 +7,8 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+User.create(:email => 'root@localhost.com', :password => 'gfywthrkzqy', :password_confirmation => 'gfywthrkzqy')
+
 brands = Brand.create([{name: 'Toyota'}, {name: 'KIA'}, {name: 'Chevrolet'}, {name: 'Volkswagen'}, {name: 'Infinity'}, {name: 'BMW'}, {name: 'Audi'}])
 @toyota = Brand.find_by_name('Toyota')
 @toyota.models.create([{:name => 'Camry'}, {:name => 'Corolla'}])
