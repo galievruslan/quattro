@@ -1,5 +1,5 @@
-class Administration::ProjectsController < AdministrationController
-	
+﻿class Administration::ProjectsController < AdministrationController
+
   # GET /administration/projects
   # GET /administration/projects.json
   def index
@@ -25,7 +25,7 @@ class Administration::ProjectsController < AdministrationController
   # GET /administration/projects/new.json
   def new
     @project = Project.new
-
+    @services = Service.find(:all)
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @project }
@@ -42,10 +42,10 @@ class Administration::ProjectsController < AdministrationController
   def create
     @project = Project.new(params[:project])
     @project.rating=0
-    unless params[:photos].nil?
-        params[:photos].each do |photo|
-        @project.project_photos << ProjectPhoto.create(:image => photo)
-        end
+    Service.all.each do |service|
+      if defined? params[:services][service.id]
+        @Project.services << service
+      end
     end
 
     respond_to do |format|
@@ -62,7 +62,7 @@ class Administration::ProjectsController < AdministrationController
   # PUT /administration/projects/1
   # PUT /administration/projects/1.json
   def update
-    @project = Project.find(params[:id])
+    @project = Project.find(params[:id])  
     p_attr = params[:project_photo]
 
     @project_photo

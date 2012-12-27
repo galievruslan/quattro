@@ -1,6 +1,5 @@
-<h1>New project</h1>
-
-<%= form_for [:administration, @project],  :html => {:multipart => true, :id => "fileupload" } do |f| %>
+﻿<h1>New project</h1>
+<%= form_for [:administration, @project], :html => {:multipart => true, :id => "fileupload" } do |f| %>
   <% if @project.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@project.errors.count, "error") %> prohibited this project from being saved:</h2>
@@ -24,6 +23,25 @@
     <%= f.label :finish_date %><br />
     <%= f.date_select :finish_date %>
   </div>  
+  <table class="table table-striped table-hover">
+    <thead>        
+      <tr>
+        <th>Service name</th>
+        <th>Selected</th>
+      </tr>
+    </thead>  
+    <tbody>
+      <% @services.each do |service| %>
+      <tr>
+        <td><%= service.name %></td>
+        <td><%= check_box_tag "services[#{service.id}]" %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <div class="actions">
+    <%= f.submit(:class =>'btn primary start') %>
+  </div>
 <% end %>
 
 <%= link_to 'Back', administration_projects_path %>
