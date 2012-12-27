@@ -3,6 +3,10 @@ class ApplicationController < ActionController::Base
   #layout "application"
   layout :layout
 
+  def routing_error
+      render "public/404", :status => 404
+  end
+
   private
 
   def layout

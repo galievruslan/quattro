@@ -16,6 +16,7 @@ Quattro::Application.routes.draw do
   
   match '/about', :to => 'companies#show'
   match '/admin', :to => 'administration/companies#show'
+
   
   namespace :administration do
     resources :projects  do
@@ -37,6 +38,10 @@ Quattro::Application.routes.draw do
     resources :services
     resources :contacts
   end
+  # Any routes that aren't defined above here go to the 404
+  #match "*a", :to => "application#routing_error"
+
+  
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
