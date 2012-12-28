@@ -32,9 +32,10 @@ Quattro::Application.routes.draw do
       end
     end
     resources :bodies
-    resources :brands
-    resources :customers
-    resources :models
+    resources :brands do
+      resources :models
+    end
+    resources :customers    
     resources :services
     resources :contacts
     resources :users

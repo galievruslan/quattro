@@ -2,5 +2,5 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Show', administration_model_path(@model) %> |
-<%= link_to 'Back', administration_models_path %>
+<%= link_to 'Show', [:administration, @brand, @model] %> |
+<%= link_to 'Back', administration_brand_models_path(@brand) %>

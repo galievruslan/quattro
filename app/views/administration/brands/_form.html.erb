@@ -15,9 +15,6 @@
     <%= f.label :name %><br />
     <%= f.text_field :name %>
   </div> 
-  <% @models = @brand.models %>
-  <% @brand_id = @brand.id %>
-  <%= render :partial => '/administration/models/index', :locals => { :models => @models, :brand_id => @brand_id } %>      
   <div class="actions">
     <%= f.submit(:class =>'btn')%>
   </div>

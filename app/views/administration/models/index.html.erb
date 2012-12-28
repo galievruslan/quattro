@@ -1,0 +1,21 @@
+<h1>Listing models</h1>
+
+<table class="table table-striped table-hover">
+<thead>
+  <tr>
+    <th>Name</th>
+    <th colspan="3"></th>
+  </tr>
+</thead>
+<tbody>
+<% @brand.models.each do |model| %>
+  <tr>
+    <td><%= model.name %></td>
+    <td><%= link_to 'Show', [:administration, @brand, model] %></td>
+    <td><%= link_to 'Edit', edit_administration_brand_model_path(@brand, model) %></td>
+    <td><%= link_to 'Destroy', [:administration, @brand, model], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</tbody>
+</table>
+<%= link_to 'New Model', new_administration_brand_model_path, :class =>'btn' %><br><br>
