@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title><%= title %></title>  
+  <title><%= t '.title' %></title>  
   <%= csrf_meta_tag %>
   <%= render 'layouts/stylesheets' %>
   <%= yield :stylesheets %>
@@ -10,7 +10,18 @@
 </head>
  <body>
     <div id="container">
-      <%= render 'layouts/header' %>
+      <header>
+        <%= image_tag("logo.png", :alt => "Sample App", :class => "round") %>
+        <nav class="round">
+          <ul>
+            <li><%= link_to t('.home'), root_path %></li>
+            <li><%= link_to t('.projects'), projects_path %></li>
+            <li><%= link_to t('.services'), services_path %></li>
+            <li><%= link_to t('.about_us'), about_path %></li>
+            <li><%= link_to t('.contacts'), contacts_path %></li>
+          </ul>
+        </nav>
+      </header>
       <%= yield %>      
       <%= debug(params) if Rails.env.development? %>
     </div>
