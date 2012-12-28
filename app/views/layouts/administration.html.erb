@@ -41,6 +41,9 @@
             <%= link_to "Services", :controller =>  administration_services_path %>
           </li><li class="nav-header">Admin settings</li>
           <li>
+          <%= link_to 'Users', administration_users_path %>
+          </li>
+          <li>
           <%= link_to 'Logout', destroy_user_session_path %>
           </li>
     </div>

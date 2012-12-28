@@ -37,6 +37,7 @@ Quattro::Application.routes.draw do
     resources :models
     resources :services
     resources :contacts
+    resources :users
   end
   # Any routes that aren't defined above here go to the 404
   #match "*a", :to => "application#routing_error"
