@@ -1,0 +1,9 @@
+ru:
+  layouts:
+    application:
+      title: "Quattro - лаборатория автомобильной эстетики"
+      home: "Главная"
+      projects: "Проекты"
+      services: "Услуги"
+      about_us: "О нас"
+      contacts: "Контакты"
